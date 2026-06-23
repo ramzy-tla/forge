@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Forge — Social Media Cards</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+/* ── Page Shell ─────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #050505; color: #fff; font-family: 'Inter', sans-serif; padding: 48px 40px 120px; }
+h1  { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; letter-spacing: .1em; color: #FFAA00; margin-bottom: 6px; }
+.page-sub { font-size: .875rem; color: #555; margin-bottom: 48px; }
+.section-label { font-family: 'Syne', sans-serif; font-size: .6875rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #FFAA00; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,170,0,.18); }
+.cards-row { display: flex; gap: 28px; flex-wrap: wrap; margin-bottom: 64px; align-items: flex-start; }
+.card-block { display: flex; flex-direction: column; gap: 10px; }
+.card-meta  { font-size: .75rem; color: #444; letter-spacing: .04em; }
+.card-meta strong { color: #777; }
+
+/* ── Download Button ────────────────────────────── */
+.dl-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: rgba(255,170,0,.08); border: 1px solid rgba(255,170,0,.28);
+  color: #FFAA00; font-family: 'Syne', sans-serif;
+  font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  padding: 9px 16px; border-radius: 6px; cursor: pointer;
+  transition: background .2s, border-color .2s;
+  width: 100%;
+}
+.dl-btn:hover:not(:disabled) { background: rgba(255,170,0,.16); border-color: rgba(255,170,0,.5); }
+.dl-btn:disabled { opacity: .5; cursor: not-allowed; }
+.dl-btn.done  { border-color: rgba(34,197,94,.5); color: #22c55e; background: rgba(34,197,94,.08); }
+.dl-btn.error { border-color: rgba(239,68,68,.5);  color: #ef4444; background: rgba(239,68,68,.08); }
+
+/* ── Scaled Wrappers (preview only) ─────────────── */
+.wrap-post  { width: 360px; height: 360px; overflow: hidden; position: relative; border-radius: 4px; border: 1px solid #1a1a1a; flex-shrink: 0; }
+.wrap-li    { width: 792px; height: 198px; overflow: hidden; position: relative; border-radius: 4px; border: 1px solid #1a1a1a; flex-shrink: 0; }
+.wrap-fb    { width: 640px; height: 244px; overflow: hidden; position: relative; border-radius: 4px; border: 1px solid #1a1a1a; flex-shrink: 0; }
+.wrap-story { width: 225px; height: 400px; overflow: hidden; position: relative; border-radius: 4px; border: 1px solid #1a1a1a; flex-shrink: 0; }
+
+/* Scale transforms (preview display only) */
+.sc-post  { transform: scale(.3333); transform-origin: top left; position: absolute; }
+.sc-li    { transform: scale(.5);    transform-origin: top left; position: absolute; }
+.sc-fb    { transform: scale(.7805); transform-origin: top left; position: absolute; }
+.sc-story { transform: scale(.2083); transform-origin: top left; position: absolute; }
+
+/* ════════════════════════════════════════════════
+   SHARED CARD TOKENS
+════════════════════════════════════════════════ */
+.card { font-family: 'Inter', sans-serif; background: #080808; position: relative; overflow: hidden; }
+.amber { color: #FFAA00; }
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255,170,0,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,170,0,.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.dot-bg {
+  background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+.glow-br::after {
+  content:''; position:absolute; bottom:-200px; right:-200px;
+  width:600px; height:600px; border-radius:50%;
+  background: radial-gradient(circle, rgba(255,170,0,.18) 0%, transparent 65%);
+  pointer-events:none;
+}
+.glow-tl::before {
+  content:''; position:absolute; top:-200px; left:-200px;
+  width:600px; height:600px; border-radius:50%;
+  background: radial-gradient(circle, rgba(255,170,0,.12) 0%, transparent 65%);
+  pointer-events:none;
+}
+.forge-logo-row { display:flex; align-items:center; gap:14px; }
+.forge-logo-row img { width:46px; height:46px; object-fit:contain; filter: drop-shadow(0 0 10px rgba(255,170,0,.5)); }
+.forge-logo-row span { font-family:'Syne',sans-serif; font-weight:800; font-size:1.3rem; letter-spacing:.2em; color:#fff; }
+.tag { display:inline-block; font-size:.75rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#FFAA00; background:rgba(255,170,0,.1); border:1px solid rgba(255,170,0,.25); border-radius:99px; padding:6px 18px; }
+.divider { width:100%; height:1px; background:rgba(255,255,255,.07); }
+.divider-amber { width:60px; height:2px; background:#FFAA00; }
+.stars { color:#FFAA00; font-size:1.1rem; letter-spacing:4px; }
+.bottom-brand { display:flex; align-items:center; justify-content:space-between; }
+.bottom-url  { font-size:.9rem; color:rgba(255,255,255,.35); letter-spacing:.04em; }
+.bottom-flag { font-size:.9rem; color:rgba(255,255,255,.5); }
+
+/* ── Card 1: Brand Hero 1080×1080 ──────────────── */
+#p1 { width:1080px; height:1080px; padding:70px; display:flex; flex-direction:column; justify-content:space-between; }
+#p1 .headline { flex:1; display:flex; flex-direction:column; justify-content:center; }
+#p1 .headline h2 { font-family:'Syne',sans-serif; font-weight:800; font-size:7.5rem; line-height:.92; letter-spacing:-.03em; text-transform:uppercase; }
+#p1 .headline h2 span.line { display:block; }
+#p1 .sub { margin-top:40px; font-family:'Syne',sans-serif; font-style:italic; font-size:1.5rem; color:rgba(255,255,255,.6); font-weight:400; }
+
+/* ── Card 2: Services 1080×1080 ────────────────── */
+#p2 { width:1080px; height:1080px; padding:70px; display:flex; flex-direction:column; justify-content:space-between; }
+#p2 h3 { font-family:'Syne',sans-serif; font-weight:800; font-size:3.25rem; letter-spacing:-.02em; margin:32px 0 48px; line-height:1.1; }
+.svc-list { list-style:none; display:flex; flex-direction:column; gap:0; flex:1; }
+.svc-list li { display:flex; align-items:center; justify-content:space-between; padding:26px 0; border-bottom:1px solid rgba(255,255,255,.06); font-family:'Syne',sans-serif; font-size:1.6rem; font-weight:600; color:rgba(255,255,255,.85); }
+.svc-list li span.arr { color:#FFAA00; font-size:1.4rem; }
+.svc-list li:first-child { border-top:1px solid rgba(255,255,255,.06); }
+
+/* ── Card 3: Stats 1080×1080 ───────────────────── */
+#p3 { width:1080px; height:1080px; padding:70px; display:flex; flex-direction:column; justify-content:space-between; }
+#p3 .stats-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; flex:1; margin:48px 0; }
+.stat-col { background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.06); border-radius:16px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:48px 24px; gap:16px; }
+.stat-col .num { font-family:'Syne',sans-serif; font-weight:800; font-size:5.5rem; color:#FFAA00; line-height:1; }
+.stat-col .lbl { font-size:1rem; color:rgba(255,255,255,.4); text-align:center; line-height:1.4; letter-spacing:.04em; text-transform:uppercase; font-weight:500; }
+#p3 .quote-line { font-family:'Syne',sans-serif; font-style:italic; font-size:1.6rem; color:rgba(255,255,255,.45); font-weight:400; }
+
+/* ── Card 4: Testimonial 1080×1080 ─────────────── */
+#p4 { width:1080px; height:1080px; padding:70px; display:flex; flex-direction:column; justify-content:space-between; }
+#p4 .q-mark { font-family:'Syne',sans-serif; font-size:11rem; color:#FFAA00; line-height:.7; opacity:.9; }
+#p4 .q-text { font-size:2.1rem; line-height:1.55; color:rgba(255,255,255,.88); font-weight:400; flex:1; margin:32px 0; }
+#p4 .author-row { display:flex; align-items:center; gap:22px; }
+#p4 .av { width:72px; height:72px; border-radius:50%; background:rgba(255,170,0,.15); border:2px solid rgba(255,170,0,.3); display:flex; align-items:center; justify-content:center; font-family:'Syne',sans-serif; font-weight:700; font-size:1.3rem; color:#FFAA00; }
+#p4 .auth-name { font-family:'Syne',sans-serif; font-weight:700; font-size:1.4rem; }
+#p4 .auth-role { font-size:1rem; color:rgba(255,255,255,.4); margin-top:4px; }
+
+/* ── Card 5: Open for Projects 1080×1080 ────────── */
+#p5 { width:1080px; height:1080px; padding:70px; display:flex; flex-direction:column; justify-content:space-between; background:#FFAA00; }
+#p5 .forge-logo-row span { color:#080808; }
+#p5 .big { font-family:'Syne',sans-serif; font-weight:800; font-size:7rem; line-height:.92; letter-spacing:-.03em; color:#080808; text-transform:uppercase; flex:1; display:flex; flex-direction:column; justify-content:center; }
+#p5 .big em { font-style:normal; color:rgba(0,0,0,.35); }
+#p5 .contact-strip { background:#080808; border-radius:20px; padding:36px 44px; display:flex; align-items:center; justify-content:space-between; }
+#p5 .contact-strip .wa   { font-family:'Syne',sans-serif; font-size:1.3rem; font-weight:700; color:#FFAA00; }
+#p5 .contact-strip .site { font-size:1.1rem; color:rgba(255,255,255,.4); }
+#p5 .tag { background:rgba(0,0,0,.15); border-color:rgba(0,0,0,.2); color:#080808; }
+
+/* ── Card 6: Motto 1080×1080 ───────────────────── */
+#p6 { width:1080px; height:1080px; padding:70px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:40px; text-align:center; }
+#p6 img  { width:120px; height:120px; object-fit:contain; filter:drop-shadow(0 0 30px rgba(255,170,0,.6)); }
+#p6 .rule { width:80px; height:2px; background:rgba(255,170,0,.35); }
+#p6 .m1  { font-family:'Syne',sans-serif; font-weight:800; font-size:5rem; letter-spacing:-.02em; color:#fff; line-height:1; }
+#p6 .m2  { font-family:'Syne',sans-serif; font-weight:800; font-size:5rem; letter-spacing:-.02em; color:#FFAA00; line-height:1; }
+#p6 .loc { font-size:1.1rem; color:rgba(255,255,255,.35); letter-spacing:.1em; text-transform:uppercase; margin-top:16px; }
+
+/* ── LinkedIn Banner 1584×396 ──────────────────── */
+#li { width:1584px; height:396px; padding:0 80px; display:flex; align-items:center; justify-content:space-between; background:#080808; }
+#li .left { display:flex; flex-direction:column; gap:18px; }
+#li .left .forge-logo-row img { width:56px; height:56px; }
+#li .left .forge-logo-row span { font-size:1.6rem; }
+#li .tagline { font-family:'Syne',sans-serif; font-style:italic; font-size:1.3rem; color:rgba(255,255,255,.5); font-weight:400; }
+#li .center { text-align:center; }
+#li .center h2 { font-family:'Syne',sans-serif; font-weight:800; font-size:3rem; letter-spacing:-.02em; line-height:1.1; }
+#li .center h2 em { font-style:normal; color:#FFAA00; }
+#li .center p { font-size:1rem; color:rgba(255,255,255,.35); margin-top:12px; letter-spacing:.08em; text-transform:uppercase; }
+#li .right { text-align:right; }
+#li .right ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+#li .right ul li { font-size:1rem; color:rgba(255,255,255,.5); }
+#li .right ul li span { color:#FFAA00; margin-right:8px; }
+#li .right .url { margin-top:20px; font-family:'Syne',sans-serif; font-size:.95rem; color:rgba(255,170,0,.6); letter-spacing:.06em; }
+
+/* ── Facebook Cover 820×312 ────────────────────── */
+#fb { width:820px; height:312px; padding:0 56px; display:flex; align-items:center; justify-content:space-between; background:#080808; }
+#fb .left { display:flex; flex-direction:column; justify-content:center; gap:14px; }
+#fb .left .forge-logo-row img { width:50px; height:50px; }
+#fb .left .forge-logo-row span { font-size:1.4rem; }
+#fb .left .motto { font-family:'Syne',sans-serif; font-size:1.05rem; font-style:italic; color:rgba(255,255,255,.4); }
+#fb .right { text-align:right; display:flex; flex-direction:column; gap:12px; }
+#fb .right h2 { font-family:'Syne',sans-serif; font-weight:800; font-size:1.8rem; letter-spacing:-.01em; line-height:1.15; }
+#fb .right h2 em { font-style:normal; color:#FFAA00; }
+#fb .right .sub { font-size:.875rem; color:rgba(255,255,255,.35); letter-spacing:.06em; text-transform:uppercase; }
+#fb .vline { width:1px; height:140px; background:rgba(255,170,0,.2); }
+
+/* ── Story 1 — Brand 1080×1920 ─────────────────── */
+#s1 { width:1080px; height:1920px; padding:100px 80px; display:flex; flex-direction:column; justify-content:space-between; }
+#s1 .center-block { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:36px; }
+#s1 .center-block img { width:160px; height:160px; object-fit:contain; filter:drop-shadow(0 0 40px rgba(255,170,0,.7)); }
+#s1 .center-block .word { font-family:'Syne',sans-serif; font-weight:800; font-size:9rem; letter-spacing:.08em; color:#fff; text-transform:uppercase; line-height:1; }
+#s1 .center-block .sub  { font-size:1.6rem; color:rgba(255,255,255,.45); line-height:1.6; max-width:700px; }
+#s1 .services-pills { display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:24px; }
+#s1 .pill { background:rgba(255,170,0,.1); border:1px solid rgba(255,170,0,.25); border-radius:99px; padding:12px 28px; font-size:1.1rem; color:rgba(255,255,255,.8); letter-spacing:.04em; }
+#s1 .bottom-cta { text-align:center; }
+#s1 .bottom-cta .cta-label { font-size:1.1rem; color:rgba(255,255,255,.35); letter-spacing:.1em; text-transform:uppercase; margin-bottom:8px; }
+#s1 .bottom-cta .cta-url   { font-family:'Syne',sans-serif; font-size:1.4rem; color:#FFAA00; font-weight:700; }
+
+/* ── Story 2 — CTA 1080×1920 ───────────────────── */
+#s2 { width:1080px; height:1920px; padding:100px 80px; display:flex; flex-direction:column; justify-content:space-between; }
+#s2 .hero-block { flex:1; display:flex; flex-direction:column; justify-content:center; gap:40px; }
+#s2 .hero-block h2 { font-family:'Syne',sans-serif; font-weight:800; font-size:7.5rem; line-height:.9; letter-spacing:-.02em; text-transform:uppercase; }
+#s2 .hero-block h2 .accent { color:#FFAA00; }
+#s2 .hero-block p { font-size:1.7rem; color:rgba(255,255,255,.5); line-height:1.6; max-width:780px; }
+#s2 .contact-cards { display:flex; flex-direction:column; gap:16px; }
+#s2 .c-card { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); border-radius:20px; padding:30px 36px; display:flex; align-items:center; gap:24px; }
+#s2 .c-card .icon { width:64px; height:64px; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:1.8rem; flex-shrink:0; }
+#s2 .c-card .icon.wa   { background:rgba(37,211,102,.15); }
+#s2 .c-card .icon.mail { background:rgba(255,170,0,.12); }
+#s2 .c-card .label { font-size:.95rem; color:rgba(255,255,255,.35); text-transform:uppercase; letter-spacing:.08em; margin-bottom:4px; }
+#s2 .c-card .value { font-family:'Syne',sans-serif; font-size:1.4rem; font-weight:600; }
+</style>
+</head>
+<body>
+
+<h1>FORGE — Social Media Cards</h1>
+<p class="page-sub">Click <strong style="color:#FFAA00">↓ Download PNG</strong> on any card to save it at full resolution directly to your computer.</p>
+
+<!-- ═══════════════════════════════════════════════
+     POST CARDS  1080 × 1080
+═══════════════════════════════════════════════ -->
+<div class="section-label">Post Cards — 1080 × 1080 px · Instagram · LinkedIn · TikTok</div>
+<div class="cards-row">
+
+  <!-- Card 1: Brand Hero -->
+  <div class="card-block">
+    <div class="wrap-post">
+      <div id="p1" class="card grid-bg glow-br sc-post">
+        <div class="forge-logo-row">
+          <img src="images/Gemini_Generated_Image_gnia6jgnia6jgnia-removebg-preview.png" alt="Forge" crossorigin="anonymous">
+          <span>FORGE</span>
+        </div>
+        <div class="headline">
+          <h2><span class="line">We</span><span class="line">Build</span><span class="line amber">Digital</span><span class="line">Empires.</span></h2>
+          <p class="sub">Built to Last. Forged to Grow.</p>
+        </div>
+        <div>
+          <div class="divider" style="margin-bottom:28px"></div>
+          <div class="bottom-brand">
+            <span class="bottom-url">forgeagency.com</span>
+            <span class="bottom-flag">🇬🇭 Accra, Ghana</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="card-meta"><strong>Card 1</strong> · Brand Hero</span>
+    <button class="dl-btn" data-dl="p1" onclick="downloadCard('p1','brand-hero',1080,1080)">↓ Download PNG</button>
+  </div>
+
+  <!-- Card 2: Services -->
+  <div class="card-block">
+    <div class="wrap-post">
+      <div id="p2" class="card dot-bg sc-post">
+        <div>
+          <div class="forge-logo-row">
+            <img src="images/Gemini_Generated_Image_gnia6jgnia6jgnia-removebg-preview.png" alt="Forge" crossorigin="anonymous">
+            <span>FORGE</span>
+          </div>
+          <div class="tag" style="margin-top:32px">What We Do</div>
+          <h3>Full-service<br>digital agency.</h3>
+        </div>
+        <ul class="svc-list">
+          <li>Brand Identity &amp; Strategy <span class="arr">→</span></li>
+          <li>Web Design &amp; Development <span class="arr">→</span></li>
+          <li>Motion Graphics <span class="arr">→</span></li>
+          <li>SEO &amp; Content Strategy <span class="arr">→</span></li>
+          <li>Digital Marketing <span class="arr">→</span></li>
+          <li>UI/UX &amp; Product Design <span class="arr">→</span></li>
+        </ul>
+        <div>
+          <div class="divider" style="margin-bottom:28px"></div>
+          <div class="bottom-brand">
+            <span class="bottom-url">forgeagency.com</span>
+            <span class="bottom-flag">🇬🇭 Accra, Ghana</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="card-meta"><strong>Card 2</strong> · Services</span>
+    <button class="dl-btn" data-dl="p2" onclick="downloadCard('p2','services',1080,1080)">↓ Download PNG</button>
+  </div>
+
+  <!-- Card 3: Stats -->
+  <div class="card-block">
+    <div class="wrap-post">
+      <div id="p3" class="card grid-bg sc-post">
+        <div>
+          <div class="forge-logo-row">
+            <img src="images/Gemini_Generated_Image_gnia6jgnia6jgnia-removebg-preview.png" alt="Forge" crossorigin="anonymous">
+            <span>FORGE</span>
+          </div>
+          <div class="tag" style="margin-top:32px">By the numbers</div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-col"><span class="num">40+</span><span class="lbl">Projects Delivered</span></div>
+          <div class="stat-col"><span class="num">96%</span><span class="lbl">Client Retention</span></div>
+          <div class="stat-col"><span class="num">100%</span><span class="lbl">On-Time Delivery</span></div>
+        </div>
+        <div>
+          <p class="quote-line">"Every project. On time. Every time."</p>
+          <div class="divider" style="margin:28px 0"></div>
+          <div class="bottom-brand">
+            <span class="bottom-url">forgeagency.com</span>
+            <span class="bottom-flag">🇬🇭 Accra, Ghana</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="card-meta"><strong>Card 3</strong> · Stats</span>
+    <button class="dl-btn" data-dl="p3" onclick="downloadCard('p3','stats',1080,1080)">↓ Download PNG</button>
+  </div>
+
+  <!-- Card 4: Testimonial -->
+  <div class="card-block">
+    <div class="wrap-post">
+      <div id="p4" class="card dot-bg sc-post">
+        <div>
+          <div class="tag">Client Story</div>
+          <div class="q-mark">"</div>
+        </div>
+        <p class="q-text">People call us now saying 'I saw your website.' Before Forge, nobody found us online. Now we're fully booked weeks ahead.</p>
+        <div>
+          <div class="stars">★★★★★</div>
+          <div style="height:20px"></div>
+          <div class="author-row">
+            <div class="av">AA</div>
+            <div>
+              <div class="auth-name">Abena Asante</div>
+              <div class="auth-role">CEO · Asante Catering &amp; Events, Accra</div>
+            </div>
+          </div>
+          <div class="divider" style="margin:28px 0"></div>
+          <div class="bottom-brand">
+            <span class="bottom-url">forgeagency.com</span>
+            <div class="forge-logo-row" style="gap:8px">
+              <img src="images/Gemini_Generated_Image_gnia6jgnia6jgnia-removebg-preview.png" alt="" style="width:30px;height:30px" crossorigin="anonymous">
+              <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:.9rem;letter-spacing:.15em">FORGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="card-meta"><strong>Card 4</strong> · Testimonial</span>
+    <button class="dl-btn" data-dl="p4" onclick="downloadCard('p4','testimonial',1080,1080)">↓ Download PNG</button>
+  </div>
+
+  <!-- Card 5: Open for Projects -->
+  <div class="card-block">
+    <div class="wrap-post">
+      <div id="p5" class="card sc-post">
+        <div>
+          <div class="forge-logo-row">
+            <img src="images/Gemini_Generated_Image_gnia6jgnia6jgnia-removebg-preview.png" alt="Forge" style="filter:none" crossorigin="anonymous">
+            <span>FORGE</span>
+          </div>
+          <div class="tag" style="margin-top:28px">Now Accepting Projects</div>
+        </div>
+        <div class="big"><span>We're<br>Open <em>for</em><br>Business.</span></div>
+        <div class="contact-strip">
+          <div>
+            <div style="font-size:.9rem;color:rgba(255,255,255,.35);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">WhatsApp us</div>
+            <div class="wa">+233 594 921 931</div>
+          </div>
+          <div style="width:1px;height:56px;background:rgba(255,255,255,.1)"></div>
+          <div>
+            <div style="font-size:.9rem;color:rgba(255,255,255,.35);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">Website</div>
+            <div class="site">forgeagency.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="card-meta"><strong>Card 5</strong> · Open for Projects</span>
+    <button class="dl-btn" data-dl="p5" onclick="downloadCard('p5','open-for-projects',1080,1080)">↓ Download PNG</button>
+  </div>
+
+  <!-- Card 6: Motto -->
+  <div class="card-block">
+    <div class="wrap-post">
+      <div id="p6" class="card grid-bg glow-tl sc-post">
+        <img src="images/Gemini_Generated_Image_gnia6jgnia6jgnia-removebg-preview.png" alt="Forge" crossorigin="anonymous">
+        <div class="rule"></div>
+        <div class="m1">Built to Last.</div>
+        <div class="m2">Forged to Grow.</div>
+        <div class="rule"></div>
+        <div class="loc">🇬🇭 Accra, Ghana · forgeagency.com</div>
+      </div>
+    </div>
+    <span class="card-meta"><strong>Card 6</strong> · Motto</span>
+    <button class="dl-btn" data-dl="p6" onclick="downloadCard('p6','motto',1080,1080)">↓ Download PNG</button>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     BANNERS
+═══════════════════════════════════════════════ -->
+<div class="section-label">Cover Images — LinkedIn 1584×396 · Facebook 820×312</div>
+<div class="cards-row" style="flex-direction:column">
+
+  <div class="card-block">
+    <div class="wrap-li">
+      <div id="li" class="card grid-bg glow-br sc-li">
+        <div class="left">
+          <div class="forge-logo-row">
+            <img src="images/Gemini_Generated_Image_gnia6jgnia6jgnia-removebg-preview.png" alt="Forge" crossorigin="anonymous">
+            <span>FORGE</span>
+          </div>
+          <div class="divider-amber"></div>
+          <p class="tagline">Built to Last. Forged to Grow.</p>
+        </div>
+        <div style="width:1px;height:200px;background:rgba(255,170,0,.15)"></div>
+        <div class="center">
+          <h2>We Build<br><em>Digital Empires.</em></h2>
+          <p>Digital Agency · Accra, Ghana 🇬🇭</p>
+        </div>
+        <div style="width:1px;height:200px;background:rgba(255,170,0,.15)"></div>
+        <div class="right">
+          <ul>
+            <li><span>→</span> Brand Identity</li>
+            <li><span>→</span> Web Development</li>
+            <li><span>→</span> Motion Graphics</li>
+            <li><span>→</span> SEO &amp; Marketing</li>
+          </ul>
+          <p class="url">forgeagency.com</p>
+        </div>
+      </div>
+    </div>
+    <span class="card-meta"><strong>LinkedIn Banner</strong> · 1584 × 396 px</span>
+    <button class="dl-btn" data-dl="li" onclick="downloadCard('li','linkedin-banner',1584,396)">↓ Download PNG</button>
+  </div>
+
+  <div class="card-block">
+    <div class="wrap-fb">
+      <div id="fb" class="card dot-bg sc-fb">
+        <div class="left">
+          <div class="forge-logo-row">
+            <img src="images/Gemini_Generated_Image_gnia6jgnia6jgnia-removebg-preview.png" alt="Forge" crossorigin="anonymous">
+            <span>FORGE</span>
+          </div>
+          <p class="motto">Built to Last. Forged to Grow.</p>
+          <span style="font-size:.8rem;color:rgba(255,255,255,.25);letter-spacing:.06em;text-transform:uppercase">🇬🇭 Accra, Ghana</span>
+        </div>
+        <div class="vline"></div>
+        <div class="right">
+          <h2>We Build<br><em>Digital</em><br>Empires.</h2>
+          <p class="sub">Brand · Web · Motion · SEO</p>
+        </div>
+      </div>
+    </div>
+    <span class="card-meta"><strong>Facebook Cover</strong> · 820 × 312 px</span>
+    <button class="dl-btn" data-dl="fb" onclick="downloadCard('fb','facebook-cover',820,312)">↓ Download PNG</button>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     STORIES  1080 × 1920
+═══════════════════════════════════════════════ -->
+<div class="section-label">Story Templates — 1080 × 1920 px · Instagram Stories · TikTok</div>
+<div class="cards-row">
+
+  <div class="card-block">
+    <div class="wrap-story">
+      <div id="s1" class="card grid-bg glow-br sc-story">
+        <div class="forge-logo-row">
+          <img src="images/Gemini_Generated_Image_gnia6jgnia6jgnia-removebg-preview.png" alt="Forge" crossorigin="anonymous">
+          <span>FORGE</span>
+        </div>
+        <div class="center-block">
+          <img src="images/Gemini_Generated_Image_gnia6jgnia6jgnia-removebg-preview.png" alt="Forge logo large" crossorigin="anonymous">
+          <div class="divider-amber"></div>
+          <div class="word">Digital<br>Agency.</div>
+          <p class="sub">Brand identity, web experiences, and motion — built for ambitious businesses.</p>
+          <div class="services-pills">
+            <span class="pill">Branding</span>
+            <span class="pill">Web Dev</span>
+            <span class="pill">Motion</span>
+            <span class="pill">SEO</span>
+            <span class="pill">Marketing</span>
+          </div>
+        </div>
+        <div class="bottom-cta">
+          <p class="cta-label">Visit us</p>
+          <p class="cta-url">forgeagency.com</p>
+        </div>
+      </div>
+    </div>
+    <span class="card-meta"><strong>Story 1</strong> · Brand · 1080×1920</span>
+    <button class="dl-btn" data-dl="s1" onclick="downloadCard('s1','story-brand',1080,1920)">↓ Download PNG</button>
+  </div>
+
+  <div class="card-block">
+    <div class="wrap-story">
+      <div id="s2" class="card dot-bg sc-story">
+        <div class="forge-logo-row">
+          <img src="images/Gemini_Generated_Image_gnia6jgnia6jgnia-removebg-preview.png" alt="Forge" crossorigin="anonymous">
+          <span>FORGE</span>
+        </div>
+        <div class="hero-block">
+          <div class="tag">Open for Projects</div>
+          <h2>Start<br>Your<br><span class="accent">Project</span><br>Today.</h2>
+          <p>We work with small businesses and large enterprises across Ghana and beyond.</p>
+        </div>
+        <div class="contact-cards">
+          <div class="c-card">
+            <div class="icon wa">💬</div>
+            <div><div class="label">WhatsApp</div><div class="value">+233 594 921 931</div></div>
+          </div>
+          <div class="c-card">
+            <div class="icon mail">✉</div>
+            <div><div class="label">Email</div><div class="value">client.forgetech@gmail.com</div></div>
+          </div>
+          <div class="c-card" style="justify-content:center;gap:16px">
+            <div class="label" style="margin:0">Website</div>
+            <div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:700;color:#FFAA00">forgeagency.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="card-meta"><strong>Story 2</strong> · CTA · 1080×1920</span>
+    <button class="dl-btn" data-dl="s2" onclick="downloadCard('s2','story-cta',1080,1920)">↓ Download PNG</button>
+  </div>
+
+</div>
+
+<script>
+async function downloadCard(cardId, filename, width, height) {
+  const btn = document.querySelector(`[data-dl="${cardId}"]`);
+  const original = document.getElementById(cardId);
+
+  btn.disabled = true;
+  btn.textContent = 'Rendering…';
+
+  // Wait for fonts to be ready
+  await document.fonts.ready;
+
+  // Clone the card and strip the scale transform
+  const offscreen = document.createElement('div');
+  offscreen.style.cssText = `
+    position: fixed;
+    left: -${width + 200}px;
+    top: 0;
+    width: ${width}px;
+    height: ${height}px;
+    overflow: hidden;
+    z-index: -9999;
+  `;
+
+  const clone = original.cloneNode(true);
+  clone.style.transform  = 'none';
+  clone.style.position   = 'relative';
+  clone.style.width      = width  + 'px';
+  clone.style.height     = height + 'px';
+  // Remove scale class so no transform is applied
+  ['sc-post','sc-li','sc-fb','sc-story'].forEach(c => clone.classList.remove(c));
+
+  offscreen.appendChild(clone);
+  document.body.appendChild(offscreen);
+
+  // Give the browser two frames to paint the clone
+  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+
+  try {
+    const canvas = await html2canvas(offscreen, {
+      width,
+      height,
+      scale: 2,           // 2× = retina quality (2160×2160 for posts)
+      useCORS: true,
+      allowTaint: false,
+      backgroundColor: null,
+      logging: false,
+      imageTimeout: 20000
+    });
+
+    const link = document.createElement('a');
+    link.download = `forge-${filename}.png`;
+    link.href = canvas.toDataURL('image/png', 1.0);
+    link.click();
+
+    btn.textContent = 'Downloaded ✓';
+    btn.classList.add('done');
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.textContent = '↓ Download PNG';
+      btn.classList.remove('done');
+    }, 2500);
+
+  } catch (err) {
+    console.error(err);
+    btn.textContent = 'Failed — try again';
+    btn.classList.add('error');
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.textContent = '↓ Download PNG';
+      btn.classList.remove('error');
+    }, 2500);
+  } finally {
+    document.body.removeChild(offscreen);
+  }
+}
+</script>
+</body>
+</html>

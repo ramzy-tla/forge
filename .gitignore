@@ -1,0 +1,15 @@
+# Tooling / agent dirs — never publish
+.claude/
+.agents/
+.forge/
+.vscode/
+.cache/
+
+# Build scripts & artifacts (not needed for the live site)
+*.py
+skills-lock.json
+_mp_previews/
+
+# OS
+.DS_Store
+Thumbs.db

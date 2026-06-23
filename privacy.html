@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Forge Digital Studio</title>
+  <meta name="description" content="Privacy Policy for Forge Digital Studio. Learn how we collect, use, and protect your personal information in accordance with Ghana's Data Protection Act.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://forgeagency.com/privacy.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/Gemini_Generated_Image_gnia6jgnia6jgnia-removebg-preview.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/Gemini_Generated_Image_gnia6jgnia6jgnia-removebg-preview.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/Gemini_Generated_Image_gnia6jgnia6jgnia-removebg-preview.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="forge.css">
+  <style>
+    .legal-page { padding: 140px 0 100px; min-height: 100vh; }
+    .legal-header { margin-bottom: 64px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .legal-header .back-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.875rem; color: var(--text3); margin-bottom: 32px;
+      transition: color 0.2s;
+    }
+    .legal-header .back-link:hover { color: var(--accent); }
+    .legal-badge {
+      display: inline-block; font-size: 0.6875rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 16px;
+    }
+    .legal-title {
+      font-family: var(--font-d); font-size: clamp(2rem,4vw,3rem);
+      font-weight: 800; letter-spacing: -0.02em; margin-bottom: 16px;
+    }
+    .legal-meta { font-size: 0.875rem; color: var(--text3); }
+    .legal-meta span { margin-right: 24px; }
+    .legal-body { max-width: 760px; }
+    .legal-toc {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 28px 32px; margin-bottom: 56px;
+    }
+    .legal-toc h3 {
+      font-family: var(--font-d); font-size: 0.875rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--text2);
+      margin-bottom: 16px;
+    }
+    .legal-toc ol { counter-reset: toc; padding-left: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+    .legal-toc li { counter-increment: toc; font-size: 0.875rem; }
+    .legal-toc a { color: var(--text3); transition: color 0.2s; }
+    .legal-toc a:hover { color: var(--accent); }
+    .legal-section { margin-bottom: 56px; scroll-margin-top: 100px; }
+    .legal-section h2 {
+      font-family: var(--font-d); font-size: 1.25rem; font-weight: 700;
+      margin-bottom: 20px; color: var(--text);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .legal-section h2 .sec-num {
+      font-size: 0.6875rem; color: var(--accent); font-weight: 700;
+      letter-spacing: 0.1em; flex-shrink: 0;
+    }
+    .legal-section p {
+      font-size: 1rem; color: var(--text2); line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .legal-section ul, .legal-section ol {
+      padding-left: 20px; margin-bottom: 16px;
+    }
+    .legal-section li {
+      font-size: 1rem; color: var(--text2); line-height: 1.8; margin-bottom: 8px;
+    }
+    .legal-section h3 {
+      font-size: 1rem; font-weight: 600; color: var(--text);
+      margin: 24px 0 12px;
+    }
+    .legal-highlight {
+      background: var(--accent-bg); border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 24px 0;
+    }
+    .legal-highlight p { color: var(--text); margin: 0; font-weight: 500; }
+    .legal-contact-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 28px 32px; margin-top: 40px;
+    }
+    .legal-contact-box h3 { font-family: var(--font-d); font-size: 1rem; font-weight: 700; margin-bottom: 16px; }
+    .legal-contact-box a { color: var(--accent); }
+    .cookie-type-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0;
+    }
+    .cookie-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 20px;
+    }
+    .cookie-card-label {
+      font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+    }
+    .cookie-card-title {
+      font-size: 0.9375rem; font-weight: 600; color: var(--text);
+      margin-bottom: 8px;
+    }
+    .cookie-card-desc {
+      font-size: 0.875rem; color: var(--text3); line-height: 1.6;
+    }
+    @media (max-width:600px) {
+      .legal-toc ol { grid-template-columns: 1fr; }
+      .legal-page { padding: 120px 0 80px; }
+      .cookie-type-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <header class="nav scrolled" role="banner">
+    <div class="nav-pill">
+      <a href="/" class="nav-logo" aria-label="Forge — Home">
+        <img src="images/Gemini_Generated_Image_gnia6jgnia6jgnia-removebg-preview.png" alt="Forge logo" class="nav-logo-img" width="36" height="36">
+        <span class="nav-logo-text">FORGE</span>
+      </a>
+      <nav class="nav-links" role="navigation" aria-label="Primary">
+        <a href="/#services" class="nav-link">Services</a>
+        <a href="/#work" class="nav-link">Work</a>
+        <a href="/#about" class="nav-link">About</a>
+        <a href="/#contact" class="nav-link">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="https://wa.me/233594921931?text=Hi%20Forge!%20I%20came%20across%20your%20website%20and%20I%27m%20interested%20in%20your%20services.%20Can%20we%20talk%3F" class="nav-wa" aria-label="WhatsApp" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+        <div class="nav-divider"></div>
+        <a href="/#contact" class="btn btn-primary btn-nav">
+          <span>Get Started</span>
+          <em>· It's free</em>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="legal-page">
+    <div class="container">
+
+      <div class="legal-header">
+        <a href="/" class="back-link">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Back to Home
+        </a>
+        <div class="legal-badge">Legal Document</div>
+        <h1 class="legal-title">Privacy Policy</h1>
+        <div class="legal-meta">
+          <span>Last updated: January 1, 2026</span>
+          <span>Effective: January 1, 2026</span>
+        </div>
+      </div>
+
+      <div class="legal-body">
+
+        <div class="legal-toc">
+          <h3>Table of Contents</h3>
+          <ol>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#information">Information We Collect</a></li>
+            <li><a href="#use">How We Use Your Information</a></li>
+            <li><a href="#cookies">Cookies & Tracking</a></li>
+            <li><a href="#sharing">Sharing Your Information</a></li>
+            <li><a href="#third-party">Third-Party Services</a></li>
+            <li><a href="#retention">Data Retention</a></li>
+            <li><a href="#rights">Your Rights</a></li>
+            <li><a href="#security">Security</a></li>
+            <li><a href="#changes">Changes to This Policy</a></li>
+          </ol>
+        </div>
+
+        <div class="legal-highlight">
+          <p>Your privacy matters to us. This Policy explains what data we collect when you visit our website or engage our services, how we use it, and how you can exercise your rights under the Data Protection Act, 2012 (Act 843) of Ghana.</p>
+        </div>
+
+        <section class="legal-section" id="overview">
+          <h2><span class="sec-num">01</span> Overview</h2>
+          <p>Forge Digital Studio ("Forge," "we," "us," or "our") is a digital agency operating in Accra, Ghana. This Privacy Policy applies to personal information we collect through our website at <strong>forgeagency.com</strong> and in the course of providing our services to clients.</p>
+          <p>We are committed to handling your personal data responsibly, transparently, and in accordance with the <strong>Data Protection Act, 2012 (Act 843)</strong> of the Republic of Ghana and internationally recognised privacy principles.</p>
+          <p>By using our website or engaging our services, you agree to the collection and use of information as described in this Policy. If you do not agree, please discontinue use of our website and services.</p>
+        </section>
+
+        <section class="legal-section" id="information">
+          <h2><span class="sec-num">02</span> Information We Collect</h2>
+          <h3>Information You Provide Directly</h3>
+          <p>When you contact us, request a quote, or engage our services, we may collect:</p>
+          <ul>
+            <li><strong>Identity information</strong> — Your full name, business name, and job title.</li>
+            <li><strong>Contact information</strong> — Email address, phone number, WhatsApp number, and physical or postal address.</li>
+            <li><strong>Project information</strong> — Your brief, goals, budget range, timeline, brand materials, and any other details you share with us about your project.</li>
+            <li><strong>Payment information</strong> — Transaction references and payment confirmation details. We do not store full card or mobile money account numbers.</li>
+            <li><strong>Communications</strong> — Emails, WhatsApp messages, and any other correspondence you send us.</li>
+          </ul>
+          <h3>Information Collected Automatically</h3>
+          <p>When you visit our website, we automatically collect certain technical information:</p>
+          <ul>
+            <li><strong>Usage data</strong> — Pages visited, time spent, links clicked, and referring URLs.</li>
+            <li><strong>Device and browser data</strong> — Browser type and version, operating system, screen resolution, and device type.</li>
+            <li><strong>IP address</strong> — Used to understand general geographic location (country/region level) and to maintain site security.</li>
+            <li><strong>Cookies and similar technologies</strong> — See the <a href="#cookies" style="color:var(--accent)">Cookies section</a> below for full details.</li>
+          </ul>
+          <h3>Information We Do Not Collect</h3>
+          <p>We do not collect sensitive personal information such as national ID numbers, health information, financial account credentials, or biometric data. We do not knowingly collect personal data from children under 13 years of age.</p>
+        </section>
+
+        <section class="legal-section" id="use">
+          <h2><span class="sec-num">03</span> How We Use Your Information</h2>
+          <p>We use the information we collect for the following purposes:</p>
+          <ul>
+            <li><strong>To deliver our services</strong> — Managing your project, communicating progress, and delivering agreed deliverables.</li>
+            <li><strong>To respond to enquiries</strong> — Replying to quote requests, questions, or messages you send us.</li>
+            <li><strong>To process payments</strong> — Issuing invoices and confirming receipt of payments.</li>
+            <li><strong>To improve our website</strong> — Analysing how visitors use our site to identify improvements and fix issues.</li>
+            <li><strong>To send relevant communications</strong> — Occasional updates about our services, new offerings, or industry insights. You can opt out at any time.</li>
+            <li><strong>To comply with legal obligations</strong> — Maintaining records as required by Ghanaian law.</li>
+            <li><strong>To protect our business</strong> — Detecting fraud, enforcing our Terms of Service, and maintaining the security of our systems.</li>
+          </ul>
+          <p>We will never sell your personal information to third parties or use it for purposes other than those described in this Policy.</p>
+        </section>
+
+        <section class="legal-section" id="cookies">
+          <h2><span class="sec-num">04</span> Cookies &amp; Tracking</h2>
+          <p>Cookies are small text files placed on your device when you visit a website. They help us understand how our site is used and improve your experience.</p>
+
+          <div class="cookie-type-grid">
+            <div class="cookie-card">
+              <div class="cookie-card-label">Essential</div>
+              <div class="cookie-card-title">Strictly Necessary</div>
+              <div class="cookie-card-desc">Required for the website to function. They cannot be disabled. These do not store any personally identifiable information.</div>
+            </div>
+            <div class="cookie-card">
+              <div class="cookie-card-label">Analytics</div>
+              <div class="cookie-card-title">Performance Cookies</div>
+              <div class="cookie-card-desc">Help us understand how visitors interact with our site — which pages are visited most and where errors occur. Data is aggregated and anonymous.</div>
+            </div>
+            <div class="cookie-card">
+              <div class="cookie-card-label">Functional</div>
+              <div class="cookie-card-title">Preference Cookies</div>
+              <div class="cookie-card-desc">Remember your preferences (such as language or region) to provide a more personalised experience on return visits.</div>
+            </div>
+            <div class="cookie-card">
+              <div class="cookie-card-label">Marketing</div>
+              <div class="cookie-card-title">Targeting Cookies</div>
+              <div class="cookie-card-desc">May be set by third-party advertising partners to build a profile of your interests. We currently do not run targeted ad campaigns through our site.</div>
+            </div>
+          </div>
+
+          <h3>Managing Cookies</h3>
+          <p>You can control and manage cookies through your browser settings. Most browsers allow you to refuse new cookies, delete existing cookies, or warn you before cookies are stored. Note that disabling cookies may affect the functionality of some parts of our website.</p>
+          <p>To manage cookies in common browsers:</p>
+          <ul>
+            <li><strong>Chrome</strong> — Settings → Privacy and security → Cookies and other site data</li>
+            <li><strong>Firefox</strong> — Settings → Privacy &amp; Security → Cookies and Site Data</li>
+            <li><strong>Safari</strong> — Preferences → Privacy → Manage Website Data</li>
+            <li><strong>Edge</strong> — Settings → Privacy, search, and services → Cookies</li>
+          </ul>
+          <h3>Third-Party Cookies</h3>
+          <p>Our website may include content or links from third-party services (such as Google Fonts, embedded videos, or social media links). These third parties may set their own cookies when you interact with their content. We do not control third-party cookies and recommend reviewing their respective privacy policies.</p>
+        </section>
+
+        <section class="legal-section" id="sharing">
+          <h2><span class="sec-num">05</span> Sharing Your Information</h2>
+          <p>We do not sell, rent, or trade your personal information. We may share your information only in the following limited circumstances:</p>
+          <ul>
+            <li><strong>Trusted service providers</strong> — Sub-contractors, freelancers, or tools we use to deliver your project (e.g., hosting platforms, design tools). These parties are bound by confidentiality obligations and may only use your data to assist with your specific project.</li>
+            <li><strong>Legal requirements</strong> — If required by law, regulation, court order, or lawful request from a government authority in Ghana or internationally.</li>
+            <li><strong>Business transfers</strong> — In the unlikely event of a merger, acquisition, or sale of business assets, your information may be transferred as part of that transaction. We will notify you before this occurs.</li>
+            <li><strong>Your consent</strong> — For any other purpose, only with your explicit written consent.</li>
+          </ul>
+        </section>
+
+        <section class="legal-section" id="third-party">
+          <h2><span class="sec-num">06</span> Third-Party Services</h2>
+          <p>Our website and operations make use of the following third-party services, each with their own privacy policies:</p>
+          <ul>
+            <li><strong>Google Fonts</strong> — Used to serve web fonts. Google may log the request and your IP address. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:var(--accent)">Google's Privacy Policy</a>.</li>
+            <li><strong>WhatsApp Business</strong> — When you click our WhatsApp link, you are directed to WhatsApp's platform. Any communication via WhatsApp is subject to <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener" style="color:var(--accent)">WhatsApp's Privacy Policy</a>.</li>
+            <li><strong>Email (Gmail)</strong> — We use Gmail for client communication. Messages are subject to <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:var(--accent)">Google's Privacy Policy</a>.</li>
+            <li><strong>Web hosting &amp; CDN providers</strong> — Our website is hosted by a third-party provider that may collect server logs including IP addresses and request data.</li>
+          </ul>
+          <p>We encourage you to review the privacy policies of any third-party services you interact with through our website or in the course of our work together.</p>
+        </section>
+
+        <section class="legal-section" id="retention">
+          <h2><span class="sec-num">07</span> Data Retention</h2>
+          <p>We retain your personal information for as long as necessary to fulfil the purposes outlined in this Policy, unless a longer retention period is required or permitted by law.</p>
+          <ul>
+            <li><strong>Client project data</strong> — Retained for a minimum of 5 years after project completion for record-keeping, tax, and legal purposes as required under Ghanaian law.</li>
+            <li><strong>Enquiry and contact data</strong> — Retained for up to 2 years if an engagement does not proceed, in case you return to us in the future.</li>
+            <li><strong>Marketing communications</strong> — Retained until you unsubscribe or request deletion.</li>
+            <li><strong>Website analytics data</strong> — Typically retained in aggregate, anonymised form; identifiable data is not retained beyond 26 months.</li>
+          </ul>
+          <p>When data is no longer needed, we securely delete or anonymise it in accordance with our data management procedures.</p>
+        </section>
+
+        <section class="legal-section" id="rights">
+          <h2><span class="sec-num">08</span> Your Rights</h2>
+          <p>Under the <strong>Data Protection Act, 2012 (Act 843)</strong> of Ghana, you have the following rights in relation to your personal data:</p>
+          <ul>
+            <li><strong>Right of access</strong> — You may request a copy of the personal data we hold about you.</li>
+            <li><strong>Right to rectification</strong> — You may request that we correct any inaccurate or incomplete personal data.</li>
+            <li><strong>Right to erasure</strong> — You may request that we delete your personal data, subject to any legal obligations we have to retain it.</li>
+            <li><strong>Right to restrict processing</strong> — You may request that we limit how we use your data in certain circumstances.</li>
+            <li><strong>Right to object</strong> — You may object to our processing of your data for marketing purposes at any time.</li>
+            <li><strong>Right to data portability</strong> — You may request that we provide your data in a structured, commonly used, machine-readable format.</li>
+          </ul>
+          <p>To exercise any of these rights, please contact us at <a href="mailto:client.forgetech@gmail.com" style="color:var(--accent)">client.forgetech@gmail.com</a>. We will respond to your request within 30 days. We may need to verify your identity before processing certain requests.</p>
+          <p>If you are not satisfied with our response, you have the right to lodge a complaint with Ghana's <strong>Data Protection Commission</strong>.</p>
+        </section>
+
+        <section class="legal-section" id="security">
+          <h2><span class="sec-num">09</span> Security</h2>
+          <p>We take the security of your personal data seriously and implement appropriate technical and organisational measures to protect it against unauthorised access, loss, destruction, or disclosure.</p>
+          <p>These measures include:</p>
+          <ul>
+            <li>Encrypted communications (HTTPS/TLS) for our website and email where possible.</li>
+            <li>Limiting access to personal data to only those team members who need it to deliver your project.</li>
+            <li>Secure file storage and access controls for project files and client communications.</li>
+            <li>Regular review of our security practices.</li>
+          </ul>
+          <p>While we do our best to protect your data, no method of transmission over the internet or electronic storage is 100% secure. We cannot guarantee absolute security, but we will notify you promptly if we become aware of a data breach that affects your personal information.</p>
+
+          <div class="legal-highlight">
+            <p>If you suspect that your data has been compromised or if you have a security concern, please contact us immediately at <a href="mailto:client.forgetech@gmail.com" style="color:var(--accent);font-weight:600">client.forgetech@gmail.com</a>.</p>
+          </div>
+        </section>
+
+        <section class="legal-section" id="changes">
+          <h2><span class="sec-num">10</span> Changes to This Policy</h2>
+          <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors. When we make material changes, we will update the "Last updated" date at the top of this page.</p>
+          <p>We encourage you to review this Policy periodically. Your continued use of our website or services after any changes constitutes your acceptance of the updated Policy.</p>
+          <p>For significant changes that affect how we handle data you have already provided, we will make reasonable efforts to notify you directly via the contact details we hold for you.</p>
+
+          <div class="legal-contact-box">
+            <h3>Privacy Questions or Requests?</h3>
+            <p style="color:var(--text2);font-size:0.9375rem;line-height:1.7;margin-bottom:16px">
+              If you have any questions about this Privacy Policy, want to exercise your data rights, or have a privacy concern, please get in touch:
+            </p>
+            <p style="font-size:0.9375rem;color:var(--text2);margin:0">
+              <strong style="color:var(--text)">Forge Digital Studio</strong><br>
+              Accra, Ghana<br>
+              Email: <a href="mailto:client.forgetech@gmail.com">client.forgetech@gmail.com</a><br>
+              WhatsApp: <a href="https://wa.me/233594921931" target="_blank" rel="noopener">+233 594 921 931</a><br>
+              Phone: <a href="tel:+233594921931">+233 594 921 931</a> &nbsp;·&nbsp; <a href="tel:+233504049580">+233 50 404 9580</a>
+            </p>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer style="border-top:1px solid var(--border);padding:32px 0;margin-top:80px">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+      <a href="/" style="font-family:var(--font-d);font-weight:800;letter-spacing:0.15em;font-size:1rem;color:var(--text)">FORGE</a>
+      <p style="font-size:0.8125rem;color:var(--text3)">© 2026 Forge Digital Studio. All rights reserved.</p>
+      <div style="display:flex;gap:24px">
+        <a href="terms.html" style="font-size:0.8125rem;color:var(--text3)">Terms</a>
+        <a href="privacy.html" style="font-size:0.8125rem;color:var(--accent)">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
