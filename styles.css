@@ -550,27 +550,40 @@ body:has(.page-hero) #nav:not(.scrolled) .burger span{ background:#fff }
 @media(max-width:600px){ .testi-grid{ grid-template-columns:1fr } }
 
 /* ════════════════════════════════════════════════════════════
-   NEWSLETTER — slim navy band above footer
+   NEWSLETTER — centered, ghost watermark + pill form
 ═══════════════════════════════════════════════════════════════ */
-.newsletter{ position:relative; overflow:hidden; padding:4.5rem 0; color:#fff; background:
-  radial-gradient(60% 120% at 10% 0%, rgba(59,130,246,.34), transparent 60%),
-  radial-gradient(55% 120% at 92% 100%, rgba(34,211,238,.18), transparent 60%),
-  #0a1020 }
-.newsletter::before{ content:''; position:absolute; inset:0; pointer-events:none;
-  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
-  background-size:56px 56px; -webkit-mask:radial-gradient(circle at 30% 40%,#000,transparent 72%); mask:radial-gradient(circle at 30% 40%,#000,transparent 72%) }
-.nl-in{ position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:2.5rem; flex-wrap:wrap }
-.nl-copy{ max-width:46ch }
-.nl-copy h2{ color:#fff; font-size:clamp(1.7rem,3.4vw,2.4rem); margin-bottom:.6rem }
-.nl-copy p{ color:rgba(255,255,255,.72); font-size:1.02rem }
-.nl-form{ display:flex; gap:.7rem; flex-wrap:wrap; flex:1; min-width:300px; max-width:520px }
-.nl-form input{ flex:1; min-width:200px; padding:.95rem 1.2rem; border-radius:100px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.08); color:#fff; font-family:inherit; font-size:.95rem; -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); transition:var(--t) }
-.nl-form input::placeholder{ color:rgba(255,255,255,.5) }
-.nl-form input:focus{ outline:none; border-color:rgba(255,255,255,.55); background:rgba(255,255,255,.13); box-shadow:0 0 0 4px rgba(59,130,246,.18) }
+.newsletter{ position:relative; overflow:hidden; padding:5.5rem 0 6rem; background:#fff; text-align:center }
+.newsletter::before, .newsletter::after{ content:''; position:absolute; z-index:0; width:130px; height:84px; pointer-events:none; background-image:radial-gradient(rgba(37,99,235,.32) 1.5px, transparent 1.7px); background-size:13px 13px }
+.newsletter::before{ top:2.4rem; right:3rem }
+.newsletter::after{ bottom:2.4rem; left:3rem }
+.newsletter .container{ position:relative; z-index:1 }
+.nl-ghost{ position:absolute; top:38%; left:50%; transform:translate(-50%,-50%); z-index:0; font-family:'Plus Jakarta Sans'; font-weight:800; font-size:clamp(3rem,10vw,7rem); line-height:1; letter-spacing:.01em; text-transform:uppercase; color:rgba(15,23,42,.04); white-space:nowrap; pointer-events:none }
+.newsletter h2{ font-size:clamp(1.8rem,4vw,2.8rem); margin:.7rem auto 0; max-width:16ch }
+.nl-form{ display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; max-width:560px; margin:2.2rem auto 0 }
+.nl-field{ flex:1; min-width:260px; display:flex; align-items:center; gap:.6rem; background:#fff; border:1px solid var(--line); border-radius:100px; padding:.35rem .4rem .35rem 1.2rem; box-shadow:var(--shadow-sm); transition:var(--t) }
+.nl-field:focus-within{ border-color:var(--blue); box-shadow:0 0 0 4px rgba(37,99,235,.1) }
+.nl-field svg{ width:20px; height:20px; stroke:var(--blue); fill:none; stroke-width:2; flex-shrink:0 }
+.nl-field input{ flex:1; min-width:0; border:none; background:transparent; padding:.7rem .2rem; font-family:inherit; font-size:.95rem; color:var(--ink) }
+.nl-field input:focus{ outline:none }
+.nl-field input::placeholder{ color:var(--muted) }
 .nl-form .btn{ flex-shrink:0 }
-.nl-ok{ display:none; width:100%; margin-top:.4rem; font-size:.9rem; font-weight:600; color:#7ee2a8 }
+.nl-ok{ display:none; width:100%; margin-top:1rem; font-weight:600; color:var(--blue) }
 .newsletter + footer{ margin-top:0 }
-@media(max-width:760px){ .nl-in{ flex-direction:column; align-items:flex-start; gap:1.6rem } .nl-form{ max-width:none } }
+
+/* ════════════════════════════════════════════════════════════
+   FOOTER v2 — connect row + blue legal strip (home)
+═══════════════════════════════════════════════════════════════ */
+.foot-v2{ padding-bottom:0 }
+.foot-connect{ display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:wrap; padding-bottom:2.4rem; margin-bottom:2.8rem; border-bottom:1px solid rgba(255,255,255,.1) }
+.foot-connect h3{ color:#fff; font-size:clamp(1.6rem,3.4vw,2.3rem); font-weight:800; letter-spacing:-.02em }
+.foot-connect-btn{ background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,.28) }
+.foot-connect-btn:hover{ background:var(--blue); border-color:var(--blue); color:#fff; transform:translateY(-2px) }
+.foot-connect-btn svg{ width:18px; height:18px; stroke:currentColor }
+.foot-strip{ background:var(--blue); margin-top:3rem }
+.foot-strip-in{ display:flex; align-items:center; justify-content:space-between; gap:.6rem 1.5rem; flex-wrap:wrap; padding-top:1.1rem; padding-bottom:1.1rem; font-size:.84rem; color:rgba(255,255,255,.92) }
+.foot-strip a{ color:rgba(255,255,255,.92); transition:color .2s }
+.foot-strip a:hover{ color:#fff; text-decoration:underline }
+.foot-legal i{ margin:0 .7rem; opacity:.5; font-style:normal }
 
 /* ════════════════════════════════════════════════════════════
    HOME — screenshot-inspired sections (reuse existing components)
