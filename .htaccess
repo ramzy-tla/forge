@@ -1,0 +1,77 @@
+# ═══════════════════════════════════════════════════
+#   FORGE — Apache Configuration
+#   Security · Clean URLs · Performance
+# ═══════════════════════════════════════════════════
+
+Options -Indexes
+
+# ── Default Document (serves forge.html at the root /) ──
+DirectoryIndex forge.html index.html
+
+RewriteEngine On
+
+# ── Force HTTPS (uncomment when your host has SSL) ──────
+# RewriteCond %{HTTPS} off
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ── WWW → non-WWW canonical redirect ────────────────────
+# RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+# RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+# ── Clean URLs: /terms → terms.html, /privacy → privacy.html ──
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^([^\.]+)/?$ $1.html [NC,L]
+
+# ── Security Headers ─────────────────────────────────────
+<IfModule mod_headers.c>
+  # Prevent clickjacking
+  Header always set X-Frame-Options "SAMEORIGIN"
+  # Prevent MIME type sniffing
+  Header always set X-Content-Type-Options "nosniff"
+  # XSS protection (legacy browsers)
+  Header always set X-XSS-Protection "1; mode=block"
+  # Control referrer info
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  # Disable browser features not needed
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+  # HSTS — tell browsers to always use HTTPS (enable after SSL is confirmed working)
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+  # Remove server info headers
+  Header unset X-Powered-By
+  Header unset Server
+</IfModule>
+
+# ── Browser Caching ───────────────────────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html                 "access plus 1 hour"
+  ExpiresByType text/css                  "access plus 1 year"
+  ExpiresByType application/javascript    "access plus 1 year"
+  ExpiresByType image/png                 "access plus 1 year"
+  ExpiresByType image/jpeg                "access plus 1 year"
+  ExpiresByType image/svg+xml             "access plus 1 year"
+  ExpiresByType image/x-icon              "access plus 1 year"
+  ExpiresByType font/woff2                "access plus 1 year"
+  ExpiresByType font/woff                 "access plus 1 year"
+  ExpiresByType application/font-woff2    "access plus 1 year"
+</IfModule>
+
+# Cache-busting headers for CSS/JS
+<FilesMatch "\.(css|js)$">
+  <IfModule mod_headers.c>
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </IfModule>
+</FilesMatch>
+
+# ── Gzip Compression ──────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml font/woff2
+</IfModule>
+
+# ── Custom Error Page ─────────────────────────────────────
+ErrorDocument 404 /forge.html
