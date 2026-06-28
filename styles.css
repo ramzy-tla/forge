@@ -508,3 +508,27 @@ body.home #nav:not(.scrolled) .burger span{ background:#fff }
 .proc p{ font-size:.9rem; color:var(--mid); max-width:25ch; margin:0 auto }
 @media(max-width:760px){ .process{ grid-template-columns:1fr 1fr; gap:2.4rem 1rem } .process::before{ display:none } }
 @media(max-width:440px){ .process{ grid-template-columns:1fr } }
+
+/* ── Premium page-hero (ALL inner pages) ── */
+.page-hero{ background:
+  radial-gradient(55% 80% at 14% 0%, rgba(59,130,246,.30), transparent 60%),
+  radial-gradient(50% 70% at 88% 8%, rgba(99,102,241,.26), transparent 60%),
+  radial-gradient(50% 70% at 72% 100%, rgba(34,211,238,.15), transparent 60%),
+  #0a1020; padding:11rem 0 5.5rem }
+.page-hero::after{ content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:56px 56px; -webkit-mask:radial-gradient(circle at 50% 30%,#000,transparent 75%); mask:radial-gradient(circle at 50% 30%,#000,transparent 75%) }
+.page-hero>.container, .page-hero .tag, .page-hero h1, .page-hero p, .page-hero .crumb{ position:relative; z-index:1 }
+.page-hero h1{ font-size:clamp(2.6rem,5.2vw,4rem) }
+.page-hero .tag{ background:rgba(255,255,255,.1); color:#bcd0ff; border:1px solid rgba(255,255,255,.14) }
+
+/* White nav at top over any dark hero (home + inner pages) */
+body:has(.page-hero) #nav:not(.scrolled) .logo{ color:#fff }
+body:has(.page-hero) #nav:not(.scrolled) .nav-links a{ color:rgba(255,255,255,.8) }
+body:has(.page-hero) #nav:not(.scrolled) .nav-links a:hover, body:has(.page-hero) #nav:not(.scrolled) .nav-links a.active{ color:#fff }
+body:has(.page-hero) #nav:not(.scrolled) .burger span{ background:#fff }
+
+/* Premium service-page cards (gradient icon tiles) */
+.svc-big-card-icon{ background:var(--grad)!important; box-shadow:0 10px 22px rgba(37,99,235,.3) }
+.svc-big-card-icon svg{ fill:#fff!important; stroke:#fff }
+.svc-big-card:hover{ transform:translateY(-8px); box-shadow:var(--shadow-lg) }
