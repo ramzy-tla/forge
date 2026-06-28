@@ -407,3 +407,60 @@ footer{background:var(--navy);color:rgba(255,255,255,.66);padding:4.5rem 0 2rem;
 .case-quote span{font-size:.9rem;color:var(--mid)}
 .case-quote em{color:var(--muted);font-size:.8rem}
 @media(max-width:900px){.case-cols{grid-template-columns:1fr;gap:2rem}.case-meta>div:last-child{margin-left:0;width:100%}}
+
+/* ════════════════════════════════════════════════════════════
+   PREMIUM UPGRADE — dark mesh hero · gradients · glass · polish
+═══════════════════════════════════════════════════════════════ */
+:root{ --grad:linear-gradient(115deg,#3b82f6 0%,#6366f1 52%,#22d3ee 100%);
+       --grad-soft:linear-gradient(115deg,#2563eb,#6366f1); }
+h1,h2,h3{ letter-spacing:-.035em }
+.accent{ background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent }
+
+/* Gradient primary button */
+.btn-primary{ background:var(--grad-soft); box-shadow:0 14px 32px rgba(37,99,235,.38) }
+.btn-primary:hover{ filter:brightness(1.06); transform:translateY(-2px); box-shadow:0 18px 40px rgba(37,99,235,.46) }
+
+/* ── DARK MESH HERO (home only) ── */
+.home .hero{ position:relative; padding:11.5rem 0 6.5rem; overflow:hidden; background:
+  radial-gradient(55% 75% at 12% 8%, rgba(59,130,246,.30), transparent 60%),
+  radial-gradient(50% 70% at 92% 18%, rgba(99,102,241,.26), transparent 60%),
+  radial-gradient(45% 65% at 75% 98%, rgba(34,211,238,.16), transparent 60%),
+  #0a1020; }
+.home .hero::before{ content:''; position:absolute; inset:0; pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:56px 56px; -webkit-mask:radial-gradient(circle at 45% 35%,#000,transparent 72%); mask:radial-gradient(circle at 45% 35%,#000,transparent 72%) }
+.home .hero>.container{ position:relative; z-index:2 }
+.home .hero h1{ color:#fff; font-size:clamp(2.9rem,6vw,5rem); line-height:1.02 }
+.home .hero p.lead{ color:rgba(255,255,255,.72); font-size:1.18rem; max-width:42ch }
+.home .hero-status{ background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16); color:rgba(255,255,255,.9); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px) }
+.home .hero-trust{ border-top:1px solid rgba(255,255,255,.12); padding-top:2rem }
+.home .hero-trust .t-n{ color:#fff }
+.home .hero-trust .t-n span{ background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent }
+.home .hero-trust .t-l{ color:rgba(255,255,255,.5) }
+.home .hero .btn-ghost{ background:rgba(255,255,255,.06); color:#fff; border-color:rgba(255,255,255,.22) }
+.home .hero .btn-ghost:hover{ background:rgba(255,255,255,.13); border-color:rgba(255,255,255,.45); color:#fff; transform:translateY(-2px) }
+
+/* Nav over the dark hero (home, before scroll) */
+body.home #nav:not(.scrolled) .logo{ color:#fff }
+body.home #nav:not(.scrolled) .nav-links a{ color:rgba(255,255,255,.8) }
+body.home #nav:not(.scrolled) .nav-links a:hover, body.home #nav:not(.scrolled) .nav-links a.active{ color:#fff }
+body.home #nav:not(.scrolled) .burger span{ background:#fff }
+
+/* Hero showcase — blue glow + premium frame */
+.hero-showcase{ position:relative }
+.hero-showcase::before{ content:''; position:absolute; inset:-14% -8% -20% -8%; z-index:0;
+  background:radial-gradient(closest-side,rgba(59,130,246,.45),transparent 72%); filter:blur(12px) }
+.hero-showcase .browser{ position:relative; z-index:1; border:1px solid rgba(255,255,255,.14); box-shadow:0 40px 90px rgba(0,0,0,.55) }
+.hero-showcase .showcase-tag{ z-index:2 }
+
+/* ── Premium service cards (gradient icon tiles) ── */
+.svc{ box-shadow:0 1px 2px rgba(15,23,42,.04) }
+.svc:hover{ transform:translateY(-8px); box-shadow:var(--shadow-lg); border-color:rgba(37,99,235,.18) }
+.svc::before{ height:0 }
+.svc-ic{ background:var(--grad); box-shadow:0 10px 22px rgba(37,99,235,.32) }
+.svc-ic svg{ stroke:#fff }
+
+/* Bigger, bolder section heads */
+.sec-head h2{ font-size:clamp(2.1rem,4.2vw,3.2rem) }
+
+@media (prefers-reduced-motion:reduce){ *{ animation:none!important; transition:none!important } }
