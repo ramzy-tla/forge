@@ -464,3 +464,47 @@ body.home #nav:not(.scrolled) .burger span{ background:#fff }
 .sec-head h2{ font-size:clamp(2.1rem,4.2vw,3.2rem) }
 
 @media (prefers-reduced-motion:reduce){ *{ animation:none!important; transition:none!important } }
+
+/* ── Hero visual: floating "live project" composition ── */
+.hero-visual{ position:relative; min-height:430px; display:flex; align-items:center; justify-content:center }
+.hv-glow{ position:absolute; inset:-6% -4%; background:radial-gradient(closest-side,rgba(59,130,246,.5),transparent 72%); filter:blur(22px) }
+.hv-card{ position:relative; z-index:1; width:min(100%,420px); background:rgba(255,255,255,.98); border-radius:20px; box-shadow:0 44px 100px rgba(0,0,0,.55); overflow:hidden }
+.hv-head{ display:flex; align-items:center; gap:6px; padding:.7rem .9rem; background:#eef2f7; border-bottom:1px solid var(--line) }
+.hv-head>span{ width:9px; height:9px; border-radius:50% }
+.hv-head>span:nth-child(1){ background:#ff5f57 } .hv-head>span:nth-child(2){ background:#febc2e } .hv-head>span:nth-child(3){ background:#28c840 }
+.hv-head em{ margin-left:.5rem; font-style:normal; font-size:.72rem; color:var(--muted) }
+.hv-pad{ padding:1.4rem }
+.hv-line{ display:flex; align-items:center; justify-content:space-between; margin-bottom:1.1rem }
+.hv-badge{ font-size:.68rem; font-weight:700; color:#16a34a; background:#dcfce7; padding:.28rem .6rem; border-radius:100px }
+.hv-line strong{ font-family:'Plus Jakarta Sans'; font-size:1.05rem; color:var(--ink) }
+.hv-chart{ display:flex; align-items:flex-end; gap:.5rem; height:92px; margin-bottom:1.3rem }
+.hv-chart i{ flex:1; height:var(--h); min-height:10px; background:var(--grad); border-radius:6px 6px 3px 3px }
+.hv-stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:.5rem; border-top:1px solid var(--line); padding-top:1.1rem }
+.hv-stats strong{ display:block; font-family:'Plus Jakarta Sans'; font-size:1.35rem; color:var(--ink); letter-spacing:-.02em }
+.hv-stats span{ font-size:.7rem; color:var(--muted) }
+.hv-chip{ position:absolute; z-index:2; display:flex; align-items:center; gap:.6rem; background:rgba(255,255,255,.98); border-radius:14px; padding:.65rem .9rem; box-shadow:0 20px 46px rgba(0,0,0,.3) }
+.hv-chip strong{ display:block; font-size:.8rem; color:var(--ink); line-height:1.2 }
+.hv-chip span{ font-size:.68rem; color:var(--muted) }
+.hv-chip-team{ top:4px; left:-26px } .hv-chip-rate{ bottom:6px; right:-20px }
+.hv-ava{ display:flex }
+.hv-ava img{ width:30px; height:30px; border-radius:50%; object-fit:cover; object-position:top; border:2px solid #fff; margin-left:-9px }
+.hv-ava img:first-child{ margin-left:0 }
+.hv-stars{ color:#f5a623; font-size:.78rem; letter-spacing:1px }
+
+/* ── Hero service-tags strip ── */
+.hero-tags{ position:relative; z-index:2; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:1.4rem; margin-top:4.5rem; padding-top:1.6rem; border-top:1px solid rgba(255,255,255,.1) }
+.hero-tags span{ font-family:'Plus Jakarta Sans'; font-weight:700; font-size:1.05rem; color:rgba(255,255,255,.9) }
+.hero-tags .spark{ width:16px; height:16px; color:#22d3ee; flex-shrink:0 }
+@media(max-width:900px){ .hv-chip-team{ left:-4px } .hv-chip-rate{ right:-4px } .hero-tags{ gap:1rem } .hero-tags span{ font-size:.92rem } }
+
+/* ── Proven work process ── */
+.process{ display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; position:relative }
+.process::before{ content:''; position:absolute; top:38px; left:12%; right:12%; height:2px; background:repeating-linear-gradient(90deg,rgba(37,99,235,.35) 0 8px,transparent 8px 16px); z-index:0 }
+.proc{ position:relative; z-index:1; text-align:center; padding:0 .4rem }
+.proc-ic{ position:relative; width:76px; height:76px; border-radius:22px; background:var(--grad); display:flex; align-items:center; justify-content:center; margin:0 auto 1.3rem; box-shadow:0 16px 32px rgba(37,99,235,.32) }
+.proc-ic svg{ width:32px; height:32px }
+.proc-n{ position:absolute; top:-10px; right:-10px; width:30px; height:30px; border-radius:50%; background:#fff; color:var(--blue); border:1px solid var(--line); font-family:'Plus Jakarta Sans'; font-weight:800; font-size:.76rem; display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow-sm) }
+.proc h4{ font-size:1.12rem; margin-bottom:.5rem; font-weight:700 }
+.proc p{ font-size:.9rem; color:var(--mid); max-width:25ch; margin:0 auto }
+@media(max-width:760px){ .process{ grid-template-columns:1fr 1fr; gap:2.4rem 1rem } .process::before{ display:none } }
+@media(max-width:440px){ .process{ grid-template-columns:1fr } }
