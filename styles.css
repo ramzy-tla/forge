@@ -532,3 +532,42 @@ body:has(.page-hero) #nav:not(.scrolled) .burger span{ background:#fff }
 .svc-big-card-icon{ background:var(--grad)!important; box-shadow:0 10px 22px rgba(37,99,235,.3) }
 .svc-big-card-icon svg{ fill:#fff!important; stroke:#fff }
 .svc-big-card:hover{ transform:translateY(-8px); box-shadow:var(--shadow-lg) }
+
+/* ════════════════════════════════════════════════════════════
+   TESTIMONIALS — social proof cards
+═══════════════════════════════════════════════════════════════ */
+.testi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem }
+.testi{ position:relative; background:#fff; border:1px solid var(--line); border-radius:var(--r-lg); padding:2.1rem 2rem 1.6rem; display:flex; flex-direction:column; gap:1.1rem; box-shadow:0 1px 2px rgba(15,23,42,.04); transition:var(--t) }
+.testi:hover{ transform:translateY(-8px); box-shadow:var(--shadow-lg); border-color:rgba(37,99,235,.18) }
+.testi::before{ content:'\201C'; position:absolute; top:.6rem; right:1.3rem; font-family:'Plus Jakarta Sans'; font-size:4.5rem; line-height:1; color:var(--bg-blue); pointer-events:none }
+.testi-stars{ color:var(--gold); font-size:.95rem; letter-spacing:2px; position:relative }
+.testi-q{ position:relative; color:#33415a; font-size:1rem; line-height:1.6; flex:1 }
+.testi-who{ display:flex; align-items:center; gap:.85rem; border-top:1px solid var(--line); padding-top:1.1rem }
+.testi-who img{ width:48px; height:48px; border-radius:50%; object-fit:cover; object-position:top; flex-shrink:0 }
+.testi-who strong{ display:block; font-family:'Plus Jakarta Sans'; font-size:.96rem; color:var(--ink); letter-spacing:-.01em }
+.testi-who span{ font-size:.82rem; color:var(--muted) }
+@media(max-width:900px){ .testi-grid{ grid-template-columns:1fr 1fr } }
+@media(max-width:600px){ .testi-grid{ grid-template-columns:1fr } }
+
+/* ════════════════════════════════════════════════════════════
+   NEWSLETTER — slim navy band above footer
+═══════════════════════════════════════════════════════════════ */
+.newsletter{ position:relative; overflow:hidden; padding:4.5rem 0; color:#fff; background:
+  radial-gradient(60% 120% at 10% 0%, rgba(59,130,246,.34), transparent 60%),
+  radial-gradient(55% 120% at 92% 100%, rgba(34,211,238,.18), transparent 60%),
+  #0a1020 }
+.newsletter::before{ content:''; position:absolute; inset:0; pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:56px 56px; -webkit-mask:radial-gradient(circle at 30% 40%,#000,transparent 72%); mask:radial-gradient(circle at 30% 40%,#000,transparent 72%) }
+.nl-in{ position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:2.5rem; flex-wrap:wrap }
+.nl-copy{ max-width:46ch }
+.nl-copy h2{ color:#fff; font-size:clamp(1.7rem,3.4vw,2.4rem); margin-bottom:.6rem }
+.nl-copy p{ color:rgba(255,255,255,.72); font-size:1.02rem }
+.nl-form{ display:flex; gap:.7rem; flex-wrap:wrap; flex:1; min-width:300px; max-width:520px }
+.nl-form input{ flex:1; min-width:200px; padding:.95rem 1.2rem; border-radius:100px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.08); color:#fff; font-family:inherit; font-size:.95rem; -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); transition:var(--t) }
+.nl-form input::placeholder{ color:rgba(255,255,255,.5) }
+.nl-form input:focus{ outline:none; border-color:rgba(255,255,255,.55); background:rgba(255,255,255,.13); box-shadow:0 0 0 4px rgba(59,130,246,.18) }
+.nl-form .btn{ flex-shrink:0 }
+.nl-ok{ display:none; width:100%; margin-top:.4rem; font-size:.9rem; font-weight:600; color:#7ee2a8 }
+.newsletter + footer{ margin-top:0 }
+@media(max-width:760px){ .nl-in{ flex-direction:column; align-items:flex-start; gap:1.6rem } .nl-form{ max-width:none } }

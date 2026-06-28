@@ -150,7 +150,6 @@
 <section class="section">
   <div class="container">
     <div class="sec-head center reveal">
-      <span class="tag">What We Do</span>
       <h2>Everything your business needs to <span class="accent">grow online</span></h2>
       <p>A full-stack team for your entire digital presence — one obsessive standard. From first pixel to final conversion, we engineer experiences that move the needle for SMEs.</p>
     </div>
@@ -217,7 +216,6 @@
 <section class="section soft">
   <div class="container">
     <div class="sec-head center reveal">
-      <span class="tag">How We Work</span>
       <h2>Our proven <span class="accent">work process</span></h2>
       <p>A clear, four-step path from first conversation to a launched, measurable result — no guesswork, no surprises.</p>
     </div>
@@ -251,7 +249,6 @@
   <div class="container">
     <div class="why reveal">
       <div class="why-l">
-        <span class="tag">Why It Matters</span>
         <h2>Every SME needs a digital presence that works as hard as you do.</h2>
         <p>Your customers are searching, scrolling and deciding online. We give you the tools to meet them there — and turn attention into revenue.</p>
         <a href="contact" class="btn btn-gold">Book a Free Strategy Call
@@ -272,7 +269,6 @@
   <div class="container">
     <div class="sec-head reveal" style="display:flex;justify-content:space-between;align-items:flex-end;max-width:none">
       <div style="max-width:540px">
-        <span class="tag">Featured Work</span>
         <h2>Proof over <span class="accent">promises</span>.</h2>
       </div>
       <a href="portfolio" class="btn btn-ghost">View All Work</a>
@@ -306,6 +302,42 @@
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section class="section soft">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <h2>Loved by the businesses <span class="accent">we build for</span></h2>
+      <p>We measure our work by the growth our clients see. Here's what it's like to build with Forge.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi reveal">
+        <div class="testi-stars" aria-label="5 out of 5">★★★★★</div>
+        <p class="testi-q">Forge rebuilt our website and inquiries doubled within two months. They actually understood our business — not just the design.</p>
+        <div class="testi-who">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Daniel Mensah">
+          <div><strong>Daniel Mensah</strong><span>Managing Director, NOBSED Engineering</span></div>
+        </div>
+      </div>
+      <div class="testi reveal">
+        <div class="testi-stars" aria-label="5 out of 5">★★★★★</div>
+        <p class="testi-q">Fast, communicative and obsessive about detail. Our brand finally looks the part — and the new site converts far better.</p>
+        <div class="testi-who">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=120&q=80" alt="Ama Owusu">
+          <div><strong>Ama Owusu</strong><span>Founder, Bloom Skincare</span></div>
+        </div>
+      </div>
+      <div class="testi reveal">
+        <div class="testi-stars" aria-label="5 out of 5">★★★★★</div>
+        <p class="testi-q">From SEO to the new store, every promise was delivered on time. Sales are up and so is our confidence online.</p>
+        <div class="testi-who">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="Kwesi Boateng">
+          <div><strong>Kwesi Boateng</strong><span>Owner, Accra Auto Parts</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="container">
   <div class="cta reveal">
@@ -315,6 +347,22 @@
       <a href="contact" class="btn btn-gold">Start a Project</a>
       <a href="mailto:client.forgetech@gmail.com" class="btn btn-ghost" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.4)">Email Us</a>
     </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="container nl-in">
+    <div class="nl-copy reveal">
+      <h2>Growth tips, straight to your inbox</h2>
+      <p>Join our newsletter for practical web, marketing and SEO insights for growing businesses. No spam — unsubscribe anytime.</p>
+    </div>
+    <form class="nl-form reveal" id="nlForm" novalidate>
+      <input type="email" name="email" placeholder="Enter your email" aria-label="Email address" required>
+      <button type="submit" class="btn btn-gold">Subscribe
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1a1205" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round"/></svg></button>
+      <p class="nl-ok" id="nlOk">Thanks — you're on the list! ✦</p>
+    </form>
   </div>
 </section>
 
@@ -354,7 +402,9 @@ const nav=document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20));
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-document.querySelector('.play').addEventListener('click',()=>alert('Showreel video coming soon.'));
+document.querySelector('.play')?.addEventListener('click',()=>alert('Showreel video coming soon.'));
+const nlForm=document.getElementById('nlForm');
+nlForm?.addEventListener('submit',e=>{e.preventDefault();if(!nlForm.email.value){return}nlForm.querySelector('input').style.display='none';nlForm.querySelector('button').style.display='none';document.getElementById('nlOk').style.display='block';});
 const dr=document.getElementById('drawer');
 document.getElementById('burger').addEventListener('click',()=>dr.classList.add('open'));
 document.getElementById('drawerX').addEventListener('click',()=>dr.classList.remove('open'));
