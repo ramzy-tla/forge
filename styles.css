@@ -628,3 +628,37 @@ body:has(.page-hero) #nav:not(.scrolled) .burger span{ background:#fff }
 .proj-arrow svg{ width:20px; height:20px; stroke:#fff; fill:none; stroke-width:2.2 }
 .proj-viewall{ display:flex; justify-content:center; margin-top:2.8rem }
 @media(max-width:760px){ .proj-grid{ grid-template-columns:1fr } .proj-ghost{ font-size:3rem } }
+
+/* ════════════════════════════════════════════════════════════
+   SERVICES — showcase header (ghost title + left heading + button)
+═══════════════════════════════════════════════════════════════ */
+.svc-head{ position:relative; display:flex; align-items:flex-end; justify-content:space-between; gap:2rem; margin-bottom:2.8rem; max-width:none; text-align:left }
+.svc-head-l{ position:relative; z-index:1 }
+.svc-ghost{ position:absolute; left:-.2rem; top:-2.4rem; z-index:0; font-family:'Plus Jakarta Sans'; font-weight:800; font-size:clamp(3rem,8vw,6rem); line-height:1; letter-spacing:.01em; text-transform:uppercase; color:rgba(15,23,42,.05); white-space:nowrap; pointer-events:none }
+.svc-head h2{ font-size:clamp(2rem,4.2vw,3rem); margin-top:.55rem }
+.svc-head .btn{ position:relative; z-index:1; flex-shrink:0 }
+@media(max-width:760px){ .svc-head{ flex-direction:column; align-items:flex-start; gap:1.1rem } .svc-ghost{ font-size:3rem; top:-1.8rem } }
+
+/* Service-card blue underline accent on hover (echoes reference featured card) */
+.svc::before{ content:''; position:absolute; left:0; right:0; bottom:0; top:auto; height:3px; background:var(--grad); transform:scaleX(0); transform-origin:left; transition:var(--t) }
+.svc:hover::before{ transform:scaleX(1) }
+
+/* ════════════════════════════════════════════════════════════
+   MASTHEAD — utility topbar + nav (collapses topbar on scroll)
+═══════════════════════════════════════════════════════════════ */
+#masthead{ position:fixed; top:0; left:0; right:0; z-index:100 }
+#masthead #nav{ position:static }
+.topbar{ height:42px; background:var(--navy); color:rgba(255,255,255,.8); font-size:.82rem; overflow:hidden; transition:height .32s cubic-bezier(.4,0,.2,1), opacity .32s ease; border-bottom:1px solid rgba(255,255,255,.07) }
+.topbar-in{ display:flex; align-items:center; justify-content:space-between; height:42px }
+.topbar-info{ display:flex; align-items:center; gap:1.7rem; flex-wrap:wrap }
+.topbar-info a, .topbar-info span{ display:inline-flex; align-items:center; gap:.5rem; color:rgba(255,255,255,.78); transition:color .2s }
+.topbar-info a:hover{ color:#fff }
+.topbar-info svg{ width:15px; height:15px; stroke:#6ea8ff; fill:none; stroke-width:2; flex-shrink:0 }
+.topbar-soc{ display:flex; align-items:center; gap:.5rem }
+.topbar-soc a{ width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,.09); transition:transform .2s, background .2s }
+.topbar-soc a:hover{ background:var(--blue); transform:translateY(-2px) }
+.topbar-soc svg{ width:14px; height:14px; fill:rgba(255,255,255,.82) }
+.topbar-soc a:hover svg{ fill:#fff }
+#masthead.shrink .topbar{ height:0; opacity:0 }
+@media(max-width:980px){ .topbar-info .tb-addr{ display:none } }
+@media(max-width:700px){ .topbar{ display:none } }
