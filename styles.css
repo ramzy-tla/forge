@@ -586,29 +586,6 @@ body:has(.page-hero) #nav:not(.scrolled) .burger span{ background:#fff }
 .foot-legal i{ margin:0 .7rem; opacity:.5; font-style:normal }
 
 /* ════════════════════════════════════════════════════════════
-   SHOWCASE BANNER — self-contained "overview" (message + proof + CTA)
-═══════════════════════════════════════════════════════════════ */
-.show-banner{ position:relative; border-radius:var(--r-xl); overflow:hidden; box-shadow:var(--shadow-lg); border:1px solid var(--line); min-height:430px; display:flex; align-items:center }
-.show-banner > img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0 }
-.show-banner::after{ content:''; position:absolute; inset:0; z-index:1; background:linear-gradient(100deg, rgba(10,16,32,.95) 0%, rgba(10,16,32,.82) 44%, rgba(10,16,32,.32) 100%) }
-.show-banner::before{ content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
-  background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
-  background-size:50px 50px; -webkit-mask:linear-gradient(100deg,#000 30%,transparent 75%); mask:linear-gradient(100deg,#000 30%,transparent 75%) }
-.show-inner{ position:relative; z-index:2; color:#fff; padding:clamp(2.2rem,4vw,3.4rem) clamp(1.5rem,4vw,3.6rem); max-width:660px }
-.show-inner .proj-eyebrow{ color:#9dbdff }
-.show-banner h2{ color:#fff; font-size:clamp(1.9rem,3.7vw,2.9rem); line-height:1.08; margin:.7rem 0 1rem }
-.show-banner h2 .accent{ background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent }
-.show-inner > p{ color:rgba(255,255,255,.8); font-size:1.06rem; max-width:48ch; margin-bottom:1.6rem }
-.show-stats{ display:flex; gap:2.4rem; flex-wrap:wrap; margin-bottom:1.9rem; padding-top:1.5rem; border-top:1px solid rgba(255,255,255,.15) }
-.show-stats strong{ display:block; font-family:'Plus Jakarta Sans'; font-size:1.85rem; font-weight:800; letter-spacing:-.02em; line-height:1 }
-.show-stats strong span{ background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent }
-.show-stats em{ font-style:normal; font-size:.78rem; color:rgba(255,255,255,.55); display:block; margin-top:.3rem }
-.show-btns{ display:flex; gap:1rem; flex-wrap:wrap }
-.show-banner .btn-ghost{ background:rgba(255,255,255,.07); color:#fff; border-color:rgba(255,255,255,.24) }
-.show-banner .btn-ghost:hover{ background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.5); color:#fff }
-@media(max-width:600px){ .show-stats{ gap:1.4rem } .show-stats strong{ font-size:1.5rem } }
-
-/* ════════════════════════════════════════════════════════════
    QUOTE BAND — dark contact info + form (service detail)
 ═══════════════════════════════════════════════════════════════ */
 .quote-band{ position:relative; overflow:hidden; padding:5.5rem 0; background:
