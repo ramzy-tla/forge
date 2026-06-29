@@ -749,6 +749,16 @@ body:has(.page-hero) #nav:not(.scrolled) .burger span{ background:#fff }
 /* ── Monogram testimonial avatars (no stock portraits) ── */
 .testi-mono{ width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Plus Jakarta Sans'; font-weight:800; font-size:1rem; color:#fff; flex-shrink:0; letter-spacing:.02em }
 
+/* ── Single featured testimonial ── */
+.testi-solo{ position:relative; max-width:680px; margin:0 auto; text-align:center; background:#fff; border:1px solid var(--line); border-radius:var(--r-xl); padding:2.8rem 2.4rem 2.4rem; box-shadow:var(--shadow) }
+.testi-solo::before{ content:'\201C'; position:absolute; top:.4rem; left:1.6rem; font-family:'Plus Jakarta Sans'; font-size:5rem; line-height:1; color:var(--bg-blue) }
+.testi-solo .testi-stars{ justify-content:center; color:var(--gold); font-size:1.05rem; letter-spacing:3px; margin-bottom:1.1rem }
+.testi-solo .testi-q{ position:relative; font-family:'Plus Jakarta Sans'; font-weight:600; font-size:clamp(1.15rem,2.2vw,1.4rem); line-height:1.5; color:var(--ink); margin-bottom:1.7rem }
+.testi-solo .testi-who{ justify-content:center; border-top:none; padding-top:0 }
+.testi-solo .testi-who img{ width:62px; height:62px; border-radius:50%; object-fit:cover; object-position:50% 30%; flex-shrink:0 }
+.testi-solo .testi-who .testi-mono{ width:62px; height:62px; font-size:1.25rem }
+.testi-solo .testi-who strong{ font-size:1.05rem }
+
 /* ════════════════════════════════════════════════════════════
    FLOATING PILL MASTHEAD — dark rounded nav island
 ═══════════════════════════════════════════════════════════════ */
