@@ -710,3 +710,41 @@ body:has(.page-hero) #nav:not(.scrolled) .burger span{ background:#fff }
 .ovs strong{ display:block; font-family:'Plus Jakarta Sans'; font-size:1.9rem; font-weight:800; background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent }
 .ovs span{ font-size:.78rem; color:rgba(255,255,255,.6) }
 @media(max-width:860px){ .svc-overview{ grid-template-columns:1fr; padding:2.2rem } .svc-ov-list{ grid-template-columns:1fr } .svc-ov-stats{ grid-template-columns:1fr 1fr } }
+
+/* ════════════════════════════════════════════════════════════
+   MARQUEES — moving blue service strip + real tech-logo loop
+═══════════════════════════════════════════════════════════════ */
+.svc-marquee{ overflow:hidden; background:var(--blue); padding:.95rem 0 }
+.svc-marquee .mq-track{ display:flex; align-items:center; gap:2.6rem; width:max-content; animation:mq 26s linear infinite }
+.svc-marquee:hover .mq-track{ animation-play-state:paused }
+.svc-marquee b{ font-family:'Plus Jakarta Sans'; font-weight:700; font-size:1.06rem; color:#fff; white-space:nowrap; letter-spacing:-.01em }
+.mq-star{ width:18px; height:18px; color:rgba(255,255,255,.78); flex-shrink:0 }
+.logo-marquee{ overflow:hidden; padding:2.6rem 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  -webkit-mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent) }
+.lm-label{ text-align:center; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:1.7rem; font-weight:600 }
+.logo-marquee .mq-track{ display:flex; align-items:center; gap:4rem; width:max-content; animation:mq 38s linear infinite }
+.logo-marquee:hover .mq-track{ animation-play-state:paused }
+.lm-logo{ height:34px; width:auto; opacity:.85; transition:transform .3s,opacity .3s; flex-shrink:0 }
+.lm-logo:hover{ opacity:1; transform:translateY(-3px) }
+@keyframes mq{ from{ transform:translateX(0) } to{ transform:translateX(-50%) } }
+@media (prefers-reduced-motion:reduce){ .svc-marquee .mq-track, .logo-marquee .mq-track{ animation:none } }
+
+/* ── Intro art (eye-catching gradient panel, replaces stock photo) ── */
+.intro-art{ position:absolute; inset:0; overflow:hidden; background:
+  radial-gradient(60% 80% at 24% 16%, rgba(59,130,246,.6), transparent 60%),
+  radial-gradient(55% 75% at 86% 88%, rgba(34,211,238,.42), transparent 60%),
+  linear-gradient(140deg,#101c34,#0a1020) }
+.intro-art::before{ content:''; position:absolute; inset:0; pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:44px 44px; -webkit-mask:radial-gradient(circle at 50% 42%,#000,transparent 75%); mask:radial-gradient(circle at 50% 42%,#000,transparent 75%) }
+.ia-card{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:min(76%,290px); background:rgba(255,255,255,.97); border-radius:18px; box-shadow:0 30px 70px rgba(0,0,0,.5); padding:1.3rem; z-index:1 }
+.ia-head{ display:flex; align-items:center; gap:.5rem; font-size:.76rem; color:var(--muted); margin-bottom:.9rem }
+.ia-dot{ width:8px; height:8px; border-radius:50%; background:#22c55e; box-shadow:0 0 0 4px rgba(34,197,94,.18) }
+.ia-bars{ display:flex; align-items:flex-end; gap:.4rem; height:78px; margin-bottom:1rem }
+.ia-bars i{ flex:1; height:var(--h); background:var(--grad); border-radius:5px 5px 2px 2px }
+.ia-foot{ display:flex; justify-content:space-between; align-items:baseline; border-top:1px solid var(--line); padding-top:.85rem }
+.ia-foot strong{ font-family:'Plus Jakarta Sans'; font-size:1.5rem; color:var(--ink); letter-spacing:-.02em }
+.ia-foot span{ font-size:.72rem; color:var(--muted) }
+
+/* ── Monogram testimonial avatars (no stock portraits) ── */
+.testi-mono{ width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Plus Jakarta Sans'; font-weight:800; font-size:1rem; color:#fff; flex-shrink:0; letter-spacing:.02em }
