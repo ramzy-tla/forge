@@ -266,18 +266,21 @@
     </div>
     <div class="form-card reveal">
       <h3>Get Your Free Quote Today!</h3>
-      <form id="quoteForm" novalidate>
+      <form id="quoteForm" action="https://formsubmit.co/ajax/client.forgetech@gmail.com" method="POST" novalidate>
+        <input type="hidden" name="_subject" value="New quote request — Forge Technologies">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" style="display:none">
         <div class="form-row">
-          <div class="field"><label for="qf-first">First name</label><input id="qf-first" type="text" placeholder="Jane" required></div>
-          <div class="field"><label for="qf-last">Last name</label><input id="qf-last" type="text" placeholder="Doe"></div>
+          <div class="field"><label for="qf-first">First name</label><input id="qf-first" name="First name" type="text" placeholder="Jane" required></div>
+          <div class="field"><label for="qf-last">Last name</label><input id="qf-last" name="Last name" type="text" placeholder="Doe"></div>
         </div>
         <div class="form-row">
-          <div class="field"><label for="qf-email">Email</label><input id="qf-email" type="email" placeholder="jane@company.com" required></div>
-          <div class="field"><label for="qf-phone">Phone</label><input id="qf-phone" type="tel" placeholder="+233 …"></div>
+          <div class="field"><label for="qf-email">Email</label><input id="qf-email" name="Email" type="email" placeholder="jane@company.com" required></div>
+          <div class="field"><label for="qf-phone">Phone</label><input id="qf-phone" name="Phone" type="tel" placeholder="+233 …"></div>
         </div>
         <div class="field">
           <label for="qf-service">Service</label>
-          <select id="qf-service">
+          <select id="qf-service" name="Service">
             <option>Web Design &amp; Development</option>
             <option>Digital Marketing</option>
             <option>SEO &amp; Growth</option>
@@ -288,7 +291,7 @@
             <option>Not sure yet — advise me</option>
           </select>
         </div>
-        <div class="field"><label for="qf-msg">Project details</label><textarea id="qf-msg" placeholder="Tell us about your goals, timeline and budget…"></textarea></div>
+        <div class="field"><label for="qf-msg">Project details</label><textarea id="qf-msg" name="Project details" placeholder="Tell us about your goals, timeline and budget…"></textarea></div>
         <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Submit Request</button>
         <p class="form-ok" id="quoteOk">Thanks — we'll get back to you within one business day. ✦</p>
       </form>
@@ -359,7 +362,10 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 // Forms
 const quoteForm=document.getElementById('quoteForm');
-quoteForm?.addEventListener('submit',e=>{e.preventDefault();quoteForm.querySelectorAll('input,select,textarea,button').forEach(el=>el.disabled=true);document.getElementById('quoteOk').style.display='block';});
+quoteForm?.addEventListener('submit',async e=>{e.preventDefault();const b=quoteForm.querySelector('button');b.textContent='Sending…';b.disabled=true;
+  try{const r=await fetch(quoteForm.action,{method:'POST',body:new FormData(quoteForm),headers:{'Accept':'application/json'}});const j=await r.json();
+    if(j.success===true||j.success==='true'){quoteForm.querySelectorAll('input,select,textarea').forEach(el=>el.disabled=true);b.textContent='Request Sent';document.getElementById('quoteOk').style.display='block';}
+    else throw 0;}catch(_){b.textContent='Failed — try again';b.disabled=false;}});
 const nlForm=document.getElementById('nlForm');
 nlForm?.addEventListener('submit',e=>{e.preventDefault();if(!nlForm.email.value){return}nlForm.querySelector('.nl-field').style.display='none';nlForm.querySelector('button').style.display='none';document.getElementById('nlOk').style.display='block';});
 // Drawer

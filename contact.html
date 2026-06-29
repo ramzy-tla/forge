@@ -64,10 +64,10 @@
   <div class="form-card reveal">
     <h3>Send a Message</h3>
     <p style="color:var(--mid);font-size:.92rem;margin-bottom:1.6rem">Fill in the form and we&#39;ll get back to you within 24 hours with next steps.</p>
-    <form id="cf" action="https://api.web3forms.com/submit" method="POST">
-      <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
-      <input type="hidden" name="subject" value="New enquiry — Forge Technologies">
-      <input type="checkbox" name="botcheck" style="display:none">
+    <form id="cf" action="https://formsubmit.co/ajax/client.forgetech@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New enquiry — Forge Technologies">
+      <input type="hidden" name="_template" value="table">
+      <input type="text" name="_honey" style="display:none">
       <div class="form-row">
         <div class="field"><label>Full Name *</label><input name="Name" placeholder="John Doe" required></div>
         <div class="field"><label>Email Address *</label><input type="email" name="Email" placeholder="john@example.com" required></div>
@@ -92,8 +92,8 @@
 <script>
 document.getElementById('cf').addEventListener('submit',async function(e){
   e.preventDefault();var b=this.querySelector('button');b.textContent='Sending...';b.disabled=true;
-  try{const r=await fetch(this.action,{method:'POST',body:new FormData(this)});const j=await r.json();
-    if(j.success){this.reset();document.getElementById('cok').style.display='block';b.textContent='Message Sent';}
+  try{const r=await fetch(this.action,{method:'POST',body:new FormData(this),headers:{'Accept':'application/json'}});const j=await r.json();
+    if(j.success===true||j.success==='true'){this.reset();document.getElementById('cok').style.display='block';b.textContent='Message Sent';}
     else throw 0;}catch(_){b.textContent='Failed — try again';b.disabled=false;}
 });
 </script><footer>
