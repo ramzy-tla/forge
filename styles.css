@@ -748,3 +748,27 @@ body:has(.page-hero) #nav:not(.scrolled) .burger span{ background:#fff }
 
 /* ── Monogram testimonial avatars (no stock portraits) ── */
 .testi-mono{ width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Plus Jakarta Sans'; font-weight:800; font-size:1rem; color:#fff; flex-shrink:0; letter-spacing:.02em }
+
+/* ════════════════════════════════════════════════════════════
+   GLOW MASTHEAD — deep-navy header with a sweeping light beam
+═══════════════════════════════════════════════════════════════ */
+#masthead{ overflow:hidden;
+  background:radial-gradient(120% 170% at 50% 145%, rgba(37,99,235,.26), transparent 55%), linear-gradient(180deg,#0a1020,#070b16);
+  border-bottom:1px solid rgba(255,255,255,.07) }
+/* soft light bloom rising from the bottom centre */
+#masthead::before{ content:''; position:absolute; left:50%; bottom:-230px; transform:translateX(-50%); width:80%; height:330px; border-radius:50%; pointer-events:none; z-index:0;
+  background:radial-gradient(closest-side, rgba(96,165,250,.55), rgba(34,211,238,.2) 55%, transparent 72%); filter:blur(28px) }
+/* crisp bright streak along the bottom edge */
+#masthead::after{ content:''; position:absolute; left:10%; right:10%; bottom:0; height:2px; pointer-events:none; z-index:0;
+  background:linear-gradient(90deg, transparent, rgba(120,180,255,.5) 18%, #eaf4ff 50%, rgba(120,200,255,.5) 82%, transparent);
+  box-shadow:0 0 24px 4px rgba(90,160,255,.65) }
+.topbar{ background:transparent; position:relative; z-index:2 }
+/* nav stays dark + light text in every state (no white-on-scroll) */
+#masthead #nav{ position:relative; z-index:2 }
+#masthead #nav, #masthead #nav.scrolled, #masthead #nav.solid{ background:transparent; -webkit-backdrop-filter:none; backdrop-filter:none; box-shadow:none }
+#masthead #nav .logo{ color:#fff }
+#masthead #nav .nav-links a{ color:rgba(255,255,255,.74) }
+#masthead #nav .nav-links a:hover, #masthead #nav .nav-links a.active{ color:#fff }
+#masthead #nav .nav-links a.active{ position:relative }
+#masthead #nav .nav-links a.active::after{ content:''; position:absolute; left:0; right:0; bottom:-6px; height:2px; border-radius:2px; background:var(--grad); box-shadow:0 0 12px rgba(59,130,246,.85) }
+#masthead #nav .burger span{ background:#fff }
