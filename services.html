@@ -364,9 +364,12 @@ const nlForm=document.getElementById('nlForm');
 nlForm?.addEventListener('submit',e=>{e.preventDefault();if(!nlForm.email.value){return}nlForm.querySelector('.nl-field').style.display='none';nlForm.querySelector('button').style.display='none';document.getElementById('nlOk').style.display='block';});
 // Drawer
 const dr=document.getElementById('drawer');
-document.getElementById('burger').addEventListener('click',()=>dr.classList.add('open'));
-document.getElementById('drawerX').addEventListener('click',()=>dr.classList.remove('open'));
-dr.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>dr.classList.remove('open')));
+const burger=document.getElementById('burger');
+const closeMenu=()=>{dr.classList.remove('open');burger.classList.remove('open')};
+burger.addEventListener('click',e=>{e.stopPropagation();const o=dr.classList.toggle('open');burger.classList.toggle('open',o)});
+document.getElementById('drawerX')?.addEventListener('click',closeMenu);
+dr.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+document.addEventListener('click',e=>{if(dr.classList.contains('open')&&!dr.contains(e.target))closeMenu()});
 </script>
 <!-- Floating contact widget -->
 <div class="fab" id="fab">
