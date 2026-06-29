@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forge — Glow Header Demo</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#2563eb; --cyan:#22d3ee; --gold:#f5a623;
+    --ink:#0f172a; --bg:#070b16;
+    --grad:linear-gradient(115deg,#3b82f6 0%,#6366f1 52%,#22d3ee 100%);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:#fff;-webkit-font-smoothing:antialiased}
+  a{text-decoration:none;color:inherit}
+  .container{max-width:1180px;margin:0 auto;padding:0 1.5rem}
+
+  /* ── GLOW HEADER ── */
+  .glow-header{
+    position:relative; overflow:hidden; z-index:1;
+    background:
+      radial-gradient(120% 160% at 50% 140%, rgba(37,99,235,.28), transparent 55%),
+      linear-gradient(180deg,#0a1020 0%, #070b16 100%);
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  /* soft light bloom rising from the bottom centre */
+  .glow-header::before{
+    content:''; position:absolute; left:50%; bottom:-230px; transform:translateX(-50%);
+    width:86%; height:340px; border-radius:50%; pointer-events:none; z-index:0;
+    background:radial-gradient(closest-side, rgba(96,165,250,.6), rgba(34,211,238,.22) 55%, transparent 72%);
+    filter:blur(28px);
+  }
+  /* crisp bright light streak across the bottom edge */
+  .glow-header::after{
+    content:''; position:absolute; left:9%; right:9%; bottom:0; height:2px; pointer-events:none; z-index:0;
+    background:linear-gradient(90deg, transparent, rgba(120,180,255,.55) 18%, #eaf4ff 50%, rgba(120,200,255,.55) 82%, transparent);
+    box-shadow:0 0 26px 4px rgba(90,160,255,.7);
+  }
+  .glow-nav{
+    position:relative; z-index:2;
+    display:flex; align-items:center; justify-content:space-between;
+    max-width:1180px; margin:0 auto; padding:1.15rem 1.5rem;
+  }
+  .gh-logo{display:flex;align-items:center;gap:.6rem;font-family:'Plus Jakarta Sans';font-weight:800;font-size:1.2rem;letter-spacing:-.01em;color:#fff}
+  .gh-logo img{height:42px;width:auto;filter:drop-shadow(0 4px 14px rgba(59,130,246,.5))}
+  .gh-links{display:flex;align-items:center;gap:2.2rem}
+  .gh-links a{font-size:.95rem;font-weight:500;color:rgba(255,255,255,.74);transition:color .2s;position:relative}
+  .gh-links a:hover,.gh-links a.active{color:#fff}
+  .gh-links a.active::after{content:'';position:absolute;left:0;right:0;bottom:-7px;height:2px;border-radius:2px;background:var(--grad);box-shadow:0 0 12px rgba(59,130,246,.8)}
+  .gh-cta{
+    display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.92rem;
+    padding:.7rem 1.4rem;border-radius:100px;color:#fff;background:var(--grad);
+    box-shadow:0 0 0 1px rgba(255,255,255,.12), 0 8px 26px rgba(37,99,235,.55);
+    transition:transform .2s, box-shadow .2s;
+  }
+  .gh-cta:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(255,255,255,.2), 0 12px 34px rgba(37,99,235,.7)}
+  .gh-burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+  .gh-burger span{width:24px;height:2px;background:#fff;border-radius:2px}
+
+  /* ── demo hero below (for context) ── */
+  .demo-hero{position:relative;text-align:center;padding:6rem 1.5rem 7rem;overflow:hidden}
+  .demo-hero::before{content:'';position:absolute;inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+    background-size:54px 54px;-webkit-mask:radial-gradient(circle at 50% 0%,#000,transparent 70%);mask:radial-gradient(circle at 50% 0%,#000,transparent 70%)}
+  .demo-hero h1{position:relative;font-family:'Plus Jakarta Sans';font-weight:800;font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:1.1rem}
+  .demo-hero h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .demo-hero p{position:relative;color:rgba(255,255,255,.66);max-width:46ch;margin:0 auto;font-size:1.08rem}
+  .note{position:relative;margin-top:2rem;font-size:.82rem;color:rgba(255,255,255,.4)}
+
+  @media(max-width:760px){
+    .gh-links,.gh-cta{display:none}
+    .gh-burger{display:flex}
+  }
+</style>
+</head>
+<body>
+
+<!-- GLOW HEADER -->
+<header class="glow-header">
+  <nav class="glow-nav">
+    <a href="/" class="gh-logo"><img src="images/forge-logo.png" alt="Forge">FORGE</a>
+    <div class="gh-links">
+      <a href="#" class="active">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Portfolio</a>
+      <a href="#">Blog</a>
+    </div>
+    <a href="#" class="gh-cta">Free Consultation
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round"/></svg></a>
+    <div class="gh-burger"><span></span><span></span><span></span></div>
+  </nav>
+</header>
+
+<!-- demo content for context -->
+<section class="demo-hero">
+  <h1>A header that <span class="g">glows</span>.</h1>
+  <p>Deep-navy bar with a sweeping light beam — the same atmosphere as your reference, tuned to Forge's blue &amp; cyan.</p>
+  <p class="note">Standalone preview · say the word to roll this across the live site (or switch the glow to gold).</p>
+</section>
+
+</body>
+</html>
