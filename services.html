@@ -88,11 +88,25 @@
 <!-- VIDEO BANNER -->
 <section class="section" style="padding-bottom:0">
   <div class="container">
-    <div class="video-banner reveal" id="videoBanner" role="button" tabindex="0" aria-label="Play overview video">
-      <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1400&q=80" alt="Forge team building digital products">
-      <div class="vb-overlay">
-        <span class="vb-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="vb-cap">See how we turn ideas into measurable growth</span>
+    <div class="svc-overview reveal">
+      <div class="svc-ov-text">
+        <span class="tag">How Forge Works</span>
+        <h2>Idea to measurable growth — <span class="accent">handled end-to-end</span></h2>
+        <p>One team for strategy, design, engineering and growth. We turn your goals into a fast, beautiful site and the marketing engine behind it — then measure and optimise until it pays for itself.</p>
+        <ul class="svc-ov-list">
+          <li><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Strategy &amp; UX mapped before we build</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Designed &amp; engineered to convert</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>SEO, speed &amp; security baked in</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Tracked, reported &amp; optimised monthly</li>
+        </ul>
+        <a href="contact" class="btn btn-primary">Get a Free Consultation
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round"/></svg></a>
+      </div>
+      <div class="svc-ov-stats">
+        <div class="ovs"><strong>40+</strong><span>Projects delivered</span></div>
+        <div class="ovs"><strong>96%</strong><span>Client retention</span></div>
+        <div class="ovs"><strong>100%</strong><span>On-time delivery</span></div>
+        <div class="ovs"><strong>4.9★</strong><span>Average rating</span></div>
       </div>
     </div>
   </div>
@@ -337,35 +351,12 @@
   </div>
 </footer>
 
-<!-- VIDEO MODAL -->
-<div class="vid-modal" id="vidModal">
-  <div class="vid-modal-in">
-    <button class="vid-close" id="vidClose" aria-label="Close video">&times;</button>
-    <!-- Drop your file at images/forge-showreel.mp4, or swap this <video> for a YouTube <iframe>. -->
-    <video id="vidPlayer" controls playsinline preload="none" poster="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1400&q=80">
-      <source src="images/forge-showreel.mp4" type="video/mp4">
-      Your browser does not support embedded video.
-    </video>
-  </div>
-</div>
-
 <script>
 const nav=document.getElementById('nav');
 const mast=document.getElementById('masthead');
 addEventListener('scroll',()=>{const s=scrollY>20;nav.classList.toggle('scrolled',s);if(mast)mast.classList.toggle('shrink',s)});
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-// Video modal
-const vBanner=document.getElementById('videoBanner');
-const vModal=document.getElementById('vidModal');
-const vPlayer=document.getElementById('vidPlayer');
-function openVid(){vModal.classList.add('open');try{vPlayer.play()}catch(e){}}
-function closeVid(){vModal.classList.remove('open');vPlayer.pause()}
-vBanner.addEventListener('click',openVid);
-vBanner.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openVid()}});
-document.getElementById('vidClose').addEventListener('click',closeVid);
-vModal.addEventListener('click',e=>{if(e.target===vModal)closeVid()});
-addEventListener('keydown',e=>{if(e.key==='Escape')closeVid()});
 // Forms
 const quoteForm=document.getElementById('quoteForm');
 quoteForm?.addEventListener('submit',e=>{e.preventDefault();quoteForm.querySelectorAll('input,select,textarea,button').forEach(el=>el.disabled=true);document.getElementById('quoteOk').style.display='block';});
