@@ -801,3 +801,13 @@ body:has(.page-hero) #nav:not(.scrolled) .burger span{ background:#fff }
 .drawer a{ color:rgba(255,255,255,.82); font-family:'Plus Jakarta Sans'; font-size:1.02rem; font-weight:600; text-align:left; padding:.72rem .9rem; border-radius:11px; transition:background .2s, color .2s }
 .drawer a:hover{ background:rgba(255,255,255,.07); color:#fff }
 .drawer-x{ display:none }
+
+/* ════════════════════════════════════════════════════════════
+   LEGAL PAGES (terms/privacy) — alias legacy vars to brand tokens
+═══════════════════════════════════════════════════════════════ */
+:root{ --accent:var(--blue); --accent-bg:var(--bg-blue); --text:var(--ink); --text2:var(--mid); --text3:var(--muted); --border:var(--line); --surface:var(--bg-soft); --font-d:'Plus Jakarta Sans','Inter',sans-serif }
+.legal-page{ padding:3.5rem 0 5rem }
+.legal-section h2 .sec-num, .legal-toc a::before{ font-family:'Plus Jakarta Sans' }
+.legal-toc{ border-radius:var(--r-lg) }
+.legal-highlight{ border-radius:0 var(--r) var(--r) 0 }
+.legal-contact-box, .cookie-card{ border-radius:var(--r-lg) }
