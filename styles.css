@@ -738,6 +738,9 @@ body:has(.page-hero) #nav:not(.scrolled) .burger span{ background:#fff }
 @media (prefers-reduced-motion:reduce){ .svc-marquee .mq-track, .logo-marquee .mq-track{ animation:none } }
 
 /* ── Intro art (eye-catching gradient panel, replaces stock photo) ── */
+.intro-img{ position:relative }
+.intro-img .browser{ box-shadow:0 30px 70px rgba(0,0,0,.2) }
+.intro-img .browser img{ width:100%; aspect-ratio:16/10; object-fit:cover; object-position:top }
 .intro-art{ position:absolute; inset:0; overflow:hidden; background:
   radial-gradient(60% 80% at 24% 16%, rgba(59,130,246,.6), transparent 60%),
   radial-gradient(55% 75% at 86% 88%, rgba(34,211,238,.42), transparent 60%),
