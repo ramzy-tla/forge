@@ -425,9 +425,14 @@ h1,h2,h3{ letter-spacing:-.035em }
   radial-gradient(55% 75% at 12% 8%, rgba(59,130,246,.32), transparent 60%),
   radial-gradient(50% 70% at 92% 18%, rgba(99,102,241,.28), transparent 60%),
   radial-gradient(45% 65% at 75% 98%, rgba(34,211,238,.16), transparent 60%),
-  linear-gradient(180deg, rgba(7,11,22,.82), rgba(7,11,22,.9)),
+  linear-gradient(180deg, rgba(7,11,22,.55), rgba(7,11,22,.78)),
   url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat,
   #0a1020; }
+/* hero box removed → single centred column */
+.home .hero-grid{ grid-template-columns:1fr; max-width:800px; margin:0 auto; text-align:center }
+.home .hero p.lead{ max-width:56ch; margin-left:auto; margin-right:auto }
+.home .hero-btns{ justify-content:center }
+.home .hero-trust{ justify-content:center }
 .home .hero::before{ content:''; position:absolute; inset:0; pointer-events:none;
   background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
   background-size:56px 56px; -webkit-mask:radial-gradient(circle at 45% 35%,#000,transparent 72%); mask:radial-gradient(circle at 45% 35%,#000,transparent 72%) }
@@ -515,7 +520,7 @@ body.home #nav:not(.scrolled) .burger span{ background:#fff }
 .page-hero{ background:
   radial-gradient(55% 80% at 14% 0%, rgba(59,130,246,.30), transparent 60%),
   radial-gradient(50% 70% at 88% 8%, rgba(99,102,241,.26), transparent 60%),
-  linear-gradient(180deg, rgba(7,11,22,.74), rgba(7,11,22,.9)),
+  linear-gradient(180deg, rgba(7,11,22,.55), rgba(7,11,22,.8)),
   url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat,
   #0a1020; padding:11rem 0 5.5rem }
 .page-hero::after{ content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
