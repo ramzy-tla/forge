@@ -162,6 +162,13 @@ document.querySelectorAll('.filter-btn[data-f]').forEach(b=>b.addEventListener('
 document.querySelectorAll('.cat-list a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();blogFilter(a.dataset.f);}));
 document.getElementById('blogSearch').addEventListener('input',function(){const q=this.value.toLowerCase();
   document.querySelectorAll('#postList .post').forEach(p=>p.classList.toggle('hide',!p.dataset.title.includes(q)));});
+(function(){
+  var S={'why every sme needs seo in 2026':'seo','5 signs your website is costing you sales':'web-mistakes','the sme guide to facebook & instagram ads':'paid-social','branding on a budget: look big while small':'branding',"how we built nobsed engineering's website":'nobsed','turning website visitors into customers':'conversion','the 2026 digital playbook for ghanaian smes':'playbook',"how we built nobsed's website":'nobsed'};
+  function sl(t){return S[t.toLowerCase().replace(/\s+/g,' ').trim()]||'';}
+  document.querySelectorAll('#postList .post').forEach(function(p){var s=sl(p.querySelector('h3').textContent);if(s)p.querySelectorAll('a[href="blog-post"]').forEach(function(a){a.href='blog-post?id='+s;});});
+  var f=document.querySelector('.blog-feature');if(f){var s=sl(f.querySelector('h2').textContent);if(s)f.href='blog-post?id='+s;}
+  document.querySelectorAll('.recent a').forEach(function(a){var h=a.querySelector('h5');if(h){var s=sl(h.textContent);if(s)a.href='blog-post?id='+s;}});
+})();
 </script><footer>
   <div class="container">
     <div class="foot-top">
