@@ -422,9 +422,11 @@ h1,h2,h3{ letter-spacing:-.035em }
 
 /* ── DARK MESH HERO (home only) ── */
 .home .hero{ position:relative; padding:11.5rem 0 6.5rem; overflow:hidden; background:
-  radial-gradient(55% 75% at 12% 8%, rgba(59,130,246,.30), transparent 60%),
-  radial-gradient(50% 70% at 92% 18%, rgba(99,102,241,.26), transparent 60%),
+  radial-gradient(55% 75% at 12% 8%, rgba(59,130,246,.32), transparent 60%),
+  radial-gradient(50% 70% at 92% 18%, rgba(99,102,241,.28), transparent 60%),
   radial-gradient(45% 65% at 75% 98%, rgba(34,211,238,.16), transparent 60%),
+  linear-gradient(180deg, rgba(7,11,22,.82), rgba(7,11,22,.9)),
+  url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat,
   #0a1020; }
 .home .hero::before{ content:''; position:absolute; inset:0; pointer-events:none;
   background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
@@ -513,7 +515,8 @@ body.home #nav:not(.scrolled) .burger span{ background:#fff }
 .page-hero{ background:
   radial-gradient(55% 80% at 14% 0%, rgba(59,130,246,.30), transparent 60%),
   radial-gradient(50% 70% at 88% 8%, rgba(99,102,241,.26), transparent 60%),
-  radial-gradient(50% 70% at 72% 100%, rgba(34,211,238,.15), transparent 60%),
+  linear-gradient(180deg, rgba(7,11,22,.74), rgba(7,11,22,.9)),
+  url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat,
   #0a1020; padding:11rem 0 5.5rem }
 .page-hero::after{ content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
   background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
