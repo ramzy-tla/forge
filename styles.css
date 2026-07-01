@@ -830,6 +830,19 @@ body:has(.page-hero) #nav:not(.scrolled) .burger span{ background:#fff }
 .svc h3{ font-size:1.12rem; margin-bottom:.6rem }
 .svc p{ margin-bottom:1.1rem }
 
+/* ── Blog list (image 4): single-column wide cards + pager ── */
+#postList{ grid-template-columns:1fr; gap:1.6rem }
+#postList .post{ display:grid; grid-template-columns:270px 1fr; align-items:stretch }
+#postList .post-img{ aspect-ratio:auto; height:100%; min-height:200px }
+#postList .post-body{ padding:1.7rem 1.9rem; display:flex; flex-direction:column }
+#postList .post-body h3{ font-size:1.25rem; margin-bottom:.6rem }
+#postList .post-body p{ flex:1 }
+@media(max-width:640px){ #postList .post{ grid-template-columns:1fr } #postList .post-img{ min-height:200px } }
+.pager{ display:flex; justify-content:center; gap:.5rem; margin-top:2.6rem }
+.pager a, .pager span{ min-width:42px; height:42px; display:inline-flex; align-items:center; justify-content:center; border:1.5px solid var(--line); border-radius:11px; font-size:.9rem; font-weight:600; color:var(--mid); transition:var(--t) }
+.pager a:hover{ border-color:var(--blue); color:var(--blue) }
+.pager .active{ background:var(--blue); border-color:var(--blue); color:#fff }
+
 /* ── FAQ accordion ── */
 .faq-list{ max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:.8rem }
 .faq{ background:#fff; border:1px solid var(--line); border-radius:var(--r-lg); padding:0 1.5rem; transition:var(--t) }
