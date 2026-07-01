@@ -771,39 +771,49 @@ body:has(.page-hero) #nav:not(.scrolled) .burger span{ background:#fff }
 .testi-solo .testi-who strong{ font-size:1.05rem }
 
 /* ════════════════════════════════════════════════════════════
-   FLOATING PILL MASTHEAD — dark rounded nav island
+   MASTHEAD — dark topbar + blue social block + white nav bar
 ═══════════════════════════════════════════════════════════════ */
-#masthead{ background:transparent; border:none; overflow:visible; padding:0 1.25rem }
+#masthead{ background:#fff; border:none; overflow:hidden; padding:0 }
 #masthead::before, #masthead::after{ content:none; display:none }
-.topbar{ display:none }
-/* the nav becomes a centred, rounded, floating brand-navy pill */
-#masthead #nav{ position:relative; z-index:2; max-width:1120px; margin:1.1rem auto 0; border-radius:18px;
-  background:linear-gradient(180deg, rgba(17,27,50,.86), rgba(11,18,32,.88));
-  -webkit-backdrop-filter:blur(16px) saturate(160%); backdrop-filter:blur(16px) saturate(160%);
-  border:1px solid rgba(120,170,255,.16); box-shadow:0 18px 44px rgba(8,12,28,.55) }
-#masthead #nav.scrolled, #masthead #nav.solid{ background:linear-gradient(180deg, rgba(13,22,42,.95), rgba(9,15,28,.96)) }
-.nav-in{ padding:.5rem .6rem .5rem 1.5rem }
-#masthead .logo img{ height:32px }
-#masthead #nav .logo{ color:#fff; font-size:1.1rem }
-/* less crowded — only the five primary links show in the bar */
-#masthead #nav .nav-links{ gap:2.1rem }
-#masthead #nav .nav-links a:nth-child(n+6){ display:none }
-#masthead #nav .nav-links a{ position:relative; color:rgba(255,255,255,.7); font-size:.9rem }
-#masthead #nav .nav-links a:hover, #masthead #nav .nav-links a.active{ color:#fff }
-#masthead #nav .nav-links a.active::after{ content:''; position:absolute; left:50%; bottom:-8px; transform:translateX(-50%); width:5px; height:5px; border-radius:50%; background:var(--blue); box-shadow:0 0 9px rgba(37,99,235,.95) }
-/* light pill CTA */
-#masthead .nav-cta{ gap:.7rem }
-#masthead .nav-cta .btn-primary{ background:#fff; color:#15171c; box-shadow:none; padding:.66rem 1.35rem; font-size:.9rem }
-#masthead .nav-cta .btn-primary:hover{ background:#eceef1; transform:translateY(-1px); box-shadow:0 10px 24px rgba(0,0,0,.3) }
+/* dark utility topbar */
+.topbar{ display:block; background:var(--navy); position:relative; z-index:2; overflow:hidden }
+.topbar-in{ display:flex; align-items:stretch; justify-content:space-between; height:44px }
+.topbar-info{ display:flex; align-items:center; gap:1.7rem; flex-wrap:nowrap }
+.topbar-info a, .topbar-info span{ display:inline-flex; align-items:center; gap:.5rem; color:rgba(255,255,255,.82); font-size:.8rem }
+.topbar-info svg{ width:14px; height:14px; stroke:#6ea8ff; fill:none; stroke-width:2; flex-shrink:0 }
+/* blue angled block holding socials, flush to the right */
+.topbar-soc{ display:flex; align-items:center; gap:1rem; align-self:stretch; background:var(--blue); padding:0 1.5rem 0 2.6rem; margin-right:-1.5rem;
+  -webkit-clip-path:polygon(1.5rem 0,100% 0,100% 100%,0 100%); clip-path:polygon(1.5rem 0,100% 0,100% 100%,0 100%) }
+.topbar-soc a{ width:auto; height:auto; background:none; border-radius:0 }
+.topbar-soc a:hover{ background:none; transform:translateY(-1px) }
+.topbar-soc svg{ width:16px; height:16px; fill:#fff }
+#masthead.shrink .topbar{ height:0 }
+/* white nav bar */
+#masthead #nav{ position:relative; z-index:1; background:#fff; max-width:none; margin:0; border:none; border-radius:0;
+  -webkit-backdrop-filter:none; backdrop-filter:none; box-shadow:0 1px 0 rgba(15,23,42,.08) }
+#masthead #nav.scrolled{ box-shadow:0 6px 22px rgba(15,23,42,.09) }
+.nav-in{ padding:1rem 1.5rem }
+#masthead .logo img{ height:40px }
+#masthead #nav .logo{ color:var(--ink); font-size:1.18rem }
+#masthead #nav .nav-links{ gap:2.2rem }
+#masthead #nav .nav-links a{ position:relative; color:var(--mid); font-size:.95rem; font-weight:500 }
+#masthead #nav .nav-links a:hover{ color:var(--ink) }
+#masthead #nav .nav-links a.active{ color:var(--blue); font-weight:600 }
+#masthead #nav .nav-links a.active::after{ content:''; position:absolute; left:0; right:0; bottom:-7px; height:2px; border-radius:2px; background:var(--blue) }
+/* blue pill CTA */
+#masthead .nav-cta{ gap:.9rem }
+#masthead .nav-cta .btn-primary{ background:var(--blue); color:#fff; box-shadow:0 8px 20px rgba(37,99,235,.3); padding:.8rem 1.6rem; font-size:.92rem }
+#masthead .nav-cta .btn-primary:hover{ background:var(--blue-dark); transform:translateY(-1px); box-shadow:0 12px 26px rgba(37,99,235,.4) }
 /* hamburger animates to an X when open */
-#masthead #nav .burger span{ background:#fff; transition:transform .3s ease, opacity .2s ease }
+#masthead #nav .burger span{ background:var(--ink); transition:transform .3s ease, opacity .2s ease }
 #masthead #nav .burger.open span:nth-child(1){ transform:translateY(7px) rotate(45deg) }
 #masthead #nav .burger.open span:nth-child(2){ opacity:0 }
 #masthead #nav .burger.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg) }
-@media(max-width:560px){ #masthead .nav-cta .btn-primary{ display:none } }
+@media(max-width:980px){ .topbar-info .tb-addr{ display:none } }
+@media(max-width:600px){ .topbar-info a:not(:first-child){ display:none } #masthead .nav-cta .btn-primary{ display:none } }
 
-/* ── Compact dropdown mobile menu (replaces full-screen drawer) ── */
-.drawer{ position:fixed; inset:auto 1.25rem auto auto; top:82px; width:min(82vw,288px);
+/* ── Compact dropdown mobile menu ── */
+.drawer{ position:fixed; inset:auto 1.25rem auto auto; top:108px; width:min(82vw,288px);
   background:linear-gradient(180deg, rgba(17,27,50,.98), rgba(11,18,32,.98)); -webkit-backdrop-filter:blur(18px); backdrop-filter:blur(18px);
   border:1px solid rgba(120,170,255,.18); border-radius:18px; box-shadow:0 26px 60px rgba(0,0,0,.55);
   z-index:200; display:none; flex-direction:column; align-items:stretch; justify-content:flex-start; gap:.15rem; padding:.7rem;
