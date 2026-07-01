@@ -368,7 +368,7 @@ quoteForm?.addEventListener('submit',async e=>{e.preventDefault();const b=quoteF
     if(j.success===true||j.success==='true'){quoteForm.querySelectorAll('input,select,textarea').forEach(el=>el.disabled=true);b.textContent='Request Sent';document.getElementById('quoteOk').style.display='block';}
     else throw 0;}catch(_){b.textContent='Failed — try again';b.disabled=false;}});
 const nlForm=document.getElementById('nlForm');
-nlForm?.addEventListener('submit',async e=>{e.preventDefault();if(!nlForm.email.value)return;const b=nlForm.querySelector('button');b.disabled=true;
+nlForm?.addEventListener('submit',async e=>{e.preventDefault();var em=nlForm.email.value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){nlForm.email.setCustomValidity('Enter a valid email address');nlForm.email.reportValidity();setTimeout(function(){nlForm.email.setCustomValidity('')},60);return;}const b=nlForm.querySelector('button');b.disabled=true;
   try{const r=await fetch(nlForm.action,{method:'POST',body:new FormData(nlForm),headers:{'Accept':'application/json'}});const j=await r.json();
     if(j.success===true||j.success==='true'){nlForm.querySelector('.nl-field').style.display='none';b.style.display='none';document.getElementById('nlOk').style.display='block';}
     else throw 0;}catch(_){b.disabled=false;b.textContent='Try again';}});
