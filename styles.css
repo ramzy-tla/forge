@@ -842,6 +842,8 @@ body:has(.page-hero) #nav:not(.scrolled) .burger span{ background:#fff }
 .pager a, .pager span{ min-width:42px; height:42px; display:inline-flex; align-items:center; justify-content:center; border:1.5px solid var(--line); border-radius:11px; font-size:.9rem; font-weight:600; color:var(--mid); transition:var(--t) }
 .pager a:hover{ border-color:var(--blue); color:var(--blue) }
 .pager .active{ background:var(--blue); border-color:var(--blue); color:#fff }
+/* blog-post: article beside sidebar (image 5) */
+.blog-layout .article{ max-width:none; margin:0 }
 
 /* ── FAQ accordion ── */
 .faq-list{ max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:.8rem }
