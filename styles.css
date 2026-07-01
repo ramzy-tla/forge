@@ -864,3 +864,7 @@ body:has(.page-hero) #nav:not(.scrolled) .burger span{ background:#fff }
 .legal-toc{ border-radius:var(--r-lg) }
 .legal-highlight{ border-radius:0 var(--r) var(--r) 0 }
 .legal-contact-box, .cookie-card{ border-radius:var(--r-lg) }
+
+/* Page-hero eyebrow: // style, no pill box */
+.page-hero .tag{ background:none; border:none; padding:0; border-radius:0; color:#9dbdff; font-weight:700; letter-spacing:.1em; display:inline-flex; align-items:center; gap:.45rem; -webkit-backdrop-filter:none; backdrop-filter:none }
+.page-hero .tag::before{ content:'//'; font-weight:800; letter-spacing:-.06em; color:#6ea8ff }
