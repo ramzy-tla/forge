@@ -868,3 +868,10 @@ body:has(.page-hero) #nav:not(.scrolled) .burger span{ background:#fff }
 /* Page-hero eyebrow: // style, no pill box */
 .page-hero .tag{ background:none; border:none; padding:0; border-radius:0; color:#9dbdff; font-weight:700; letter-spacing:.1em; display:inline-flex; align-items:center; gap:.45rem; -webkit-backdrop-filter:none; backdrop-filter:none }
 .page-hero .tag::before{ content:'//'; font-weight:800; letter-spacing:-.06em; color:#6ea8ff }
+
+/* Kill horizontal scroll on mobile */
+html{ overflow-x:hidden }
+#masthead, .topbar, #masthead #nav{ max-width:100%; overflow-x:clip }
+@media(max-width:700px){
+  .topbar-soc{ margin-right:0; padding-left:1.2rem; -webkit-clip-path:none; clip-path:none }
+}
