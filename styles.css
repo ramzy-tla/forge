@@ -833,6 +833,7 @@ body:has(.page-hero) #nav:not(.scrolled) .burger span{ background:#fff }
 /* ── Blog list (image 4): single-column wide cards + pager ── */
 #postList{ grid-template-columns:1fr; gap:1.6rem }
 #postList .post{ display:grid; grid-template-columns:270px 1fr; align-items:stretch }
+#postList .post.hide{ display:none }
 #postList .post-img{ aspect-ratio:auto; height:100%; min-height:200px }
 #postList .post-body{ padding:1.7rem 1.9rem; display:flex; flex-direction:column }
 #postList .post-body h3{ font-size:1.25rem; margin-bottom:.6rem }
