@@ -23,6 +23,7 @@ h1,h2,h3,h4{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.08;
 a{text-decoration:none;color:inherit}
 img{max-width:100%;display:block}
 .container{width:100%;max-width:1180px;margin:0 auto;padding:0 1.5rem}
+@media(max-width:600px){.container{padding:0 1.75rem}}
 .accent{color:var(--blue)}
 .gold{color:var(--gold)}
 .tag{display:inline-flex;align-items:center;gap:.5rem;font-family:'Inter';font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);background:var(--bg-blue);padding:.5rem 1rem;border-radius:100px}
@@ -43,6 +44,7 @@ img{max-width:100%;display:block}
 #nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:var(--t);background:rgba(255,255,255,0)}
 #nav.scrolled,#nav.solid{background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);box-shadow:0 1px 0 rgba(15,23,42,.06)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;max-width:1180px;margin:0 auto;padding:1.05rem 1.5rem}
+@media(max-width:600px){.nav-in{padding:1.05rem 1.75rem}}
 .logo{display:flex;align-items:center;gap:.6rem;font-family:'Plus Jakarta Sans';font-weight:800;font-size:1.18rem;letter-spacing:-.01em}
 .logo img{height:46px;width:auto}
 .nav-links{display:flex;align-items:center;gap:2.1rem}
@@ -448,8 +450,8 @@ h1,h2,h3{ letter-spacing:-.035em }
 .home .hero-trust .t-n{ color:#fff }
 .home .hero-trust .t-n span{ background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent }
 .home .hero-trust .t-l{ color:rgba(255,255,255,.5) }
-.home .hero .btn-ghost{ background:rgba(255,255,255,.06); color:#fff; border-color:rgba(255,255,255,.22) }
-.home .hero .btn-ghost:hover{ background:rgba(255,255,255,.13); border-color:rgba(255,255,255,.45); color:#fff; transform:translateY(-2px) }
+.home .hero .btn-ghost{ background:transparent; color:var(--gold); border:2px solid var(--gold); box-shadow:none }
+.home .hero .btn-ghost:hover{ background:var(--gold); border-color:var(--gold); color:#1a1205; transform:translateY(-2px) }
 
 /* Nav over the dark hero (home, before scroll) */
 body.home #nav:not(.scrolled) .logo{ color:#fff }
